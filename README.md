@@ -3,13 +3,17 @@
 - Vuetify
 - Composer
 
-# Simple Framework
+# Romano's System
 
 **Table of Contents**
 
 [TOCM]
 
 [TOC]
+
+## Descripción
+
+Sistema de ventas de Romano's Pizza
 
 ## Guía de estilos de php
 
@@ -94,12 +98,7 @@ https://chris.beams.io/posts/git-commit/
 
 ## Tecnologías
 
-Clona el proyecto con las instrucciones proporcionadas por git/github.
-
-`git clone https://github.com/Goblins-Studios/simple-framework.git`
-`cd simple-framwork`
-
-Simple Framework utiliza NodeJS y Composer para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
+El proyecto utiliza NodeJS y Composer para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
 
 Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.
 
@@ -107,5 +106,3 @@ Realiza la instalacion de las dependencia del proyecto y compilar los archivos m
 `composer dump-autoload`
 `npm install`
 `npm run dev`
-
-Para utilizar el framework se debe crear un archivo `.env`. Tiene un ejemplo de archivo `.env` llamado `.env.example`

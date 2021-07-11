@@ -1,7 +1,7 @@
 {
-  "name": "simple-framework",
+  "name": "romanos-system",
   "version": "1.0.0",
-  "description": "Simple MVC framework that incorporates VueJS, Vuetify and PHP technologies, through NodeJS and Composer",
+  "description": "Romano's Pizza sales system",
   "main": "index.js",
   "scripts": {
     "dev": "npm run development",

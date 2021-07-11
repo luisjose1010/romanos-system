@@ -1,6 +1,6 @@
 {
-    "name": "luisjose1010/simple-framework",
-    "description": "Simple MVC framework that incorporates VueJS, Vuetify and PHP technologies, through NodeJS and Composer",
+    "name": "luisjose1010/romanos-system",
+    "description": "Romano's Pizza sales system",
     "type": "project",
     "license": "GNU General Public License v3.0",
     "authors": [
