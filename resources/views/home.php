@@ -10,13 +10,7 @@
 <body>
     <div id="app">
         <app>
-            <p>
-                <v-row>
-                    <v-col><example-component class="ma-4"></example-component></v-col>
-                    <v-col><example-component class="ma-4"></example-component></v-col>
-                    <v-col><example-component class="ma-4"></example-component></v-col>
-                </v-row>
-            </p>
+            
         </app>
     </div>
 

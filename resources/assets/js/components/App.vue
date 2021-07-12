@@ -3,24 +3,26 @@
     <v-container fluid>
       <v-navigation-drawer v-model="drawer" app dark>
         <v-list dense>
-          <v-list-item link 
+          <v-list-item
+            link
             v-for="item in nav"
             :key="item.title"
             :href="item.link"
             :title="item.title"
-            text>
+            text
+          >
             <v-list-item-action>
-              <v-icon>{{item.icon}}</v-icon>
+              <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{item.text}}</v-list-item-title>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
 
       <v-app-bar app color="cyan darken-4" dark>
-        <v-toolbar-title>Simple Framework</v-toolbar-title>
+        <img src="./../../img/romanos-logo.jpg" alt="Romano's Pizza" />
 
         <v-spacer></v-spacer>
         <v-toolbar-items class="d-none d-md-flex">
@@ -30,10 +32,14 @@
             :href="item.link"
             :title="item.title"
             text
-          >{{item.text}}</v-btn>
+            >{{ item.text }}</v-btn
+          >
         </v-toolbar-items>
 
-        <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          class="d-md-none"
+          @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
       </v-app-bar>
 
       <v-main>
@@ -61,6 +67,12 @@ export default {
           icon: "mdi-cart",
           link: "/productos",
         },
+        {
+          text: "Vender",
+          title: "lleva a la pagina para vender",
+          icon: "",
+          link: "/vender/agregar",
+        }
       ],
       drawer: false,
     };
@@ -69,4 +81,8 @@ export default {
 </script>
 
 <style scoped>
+img {
+  max-width: 15%;
+  height: auto;
+}
 </style>
