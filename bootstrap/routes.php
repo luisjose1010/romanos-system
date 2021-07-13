@@ -4,11 +4,17 @@ use Framework\Routing\Routes;
 use Framework\Configuration\RoutesConfiguration;
 
 require RoutesConfiguration::getPath();
+require RoutesConfiguration::getApiPath();
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $routeCollector) {
     foreach (Routes::getRoutes() as $route) {
         $routeCollector->addRoute($route->getMethod(), $route->getRoutePattern(), $route->getClousure());
-    }
+    };
+    $routeCollector->addGroup('/api', function (FastRoute\RouteCollector $routeCollector) {
+        foreach (Routes::getApi() as $apiRoute) {
+            $routeCollector->addRoute($apiRoute->getMethod(), $apiRoute->getRoutePattern(), $apiRoute->getClousure());
+        }
+    });
 });
 
 // Fetch method and URI from somewhere

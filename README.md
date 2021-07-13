@@ -98,6 +98,8 @@ https://chris.beams.io/posts/git-commit/
 
 ## Tecnologías
 
+El proyecto está desarrollado sobre el framework [Simple Framework](https://github.com/Goblins-Studios/simple-framework "Simple Framework").
+
 El proyecto utiliza NodeJS y Composer para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
 
 Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.

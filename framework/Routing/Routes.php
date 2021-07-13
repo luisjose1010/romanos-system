@@ -10,6 +10,7 @@ use FastRoute\Dispatcher;
 class Routes{
 
     protected static $routes = array();
+    protected static $api = array();
 
 
     public static function addRoute(Route $route) {
@@ -24,10 +25,17 @@ class Routes{
         array_push(self::$routes, new Route($routePattern, $closure, 'POST'));
     }
 
+    public static function api(Route $apiRoute) {
+        array_push(self::$api, $apiRoute);
+    }
+
     public static function getRoutes(){
         return self::$routes;
     }
     
+    public static function getApi(){
+        return self::$api;
+    }
 
     protected $routeInfo;
 

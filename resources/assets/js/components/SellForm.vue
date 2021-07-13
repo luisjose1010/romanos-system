@@ -3,7 +3,7 @@
     <v-container>
       <h2>Producto</h2>
       <v-row>
-        <v-form v-model="valid" method="post" ref="form" :action="action">
+        <v-form v-model="valid" method="post" ref="form">
           <v-col sm="6" md="7">
             <v-overflow-btn
               v-model="product.name"
@@ -86,11 +86,7 @@
               </tr>
             </tbody>
 
-            <v-btn
-              @click="resetProductSold"
-              color="red"
-              dark
-            >
+            <v-btn @click="resetProductSold" color="red" dark>
               <v-icon dark> mdi-trash-can-outline </v-icon>
             </v-btn>
           </v-simple-table>
@@ -101,12 +97,15 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       valid: false,
       noEmpty: [(v) => !!v || "Campo requerido"],
 
+      products: [],
       product: {
         name: "",
         ingredients: "",
@@ -115,15 +114,6 @@ export default {
       soldProducts: [],
     };
   },
-
-  props: {
-    action: String,
-    products: {
-      type: Array,
-      required: true,
-    },
-  },
-
   methods: {
     reset() {
       this.$refs.form.reset();
@@ -159,6 +149,18 @@ export default {
       }
       return found;
     },
+  },
+  mounted() {
+    axios
+      .get("/api/producto")
+      .then(response => this.products = response.data)
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
   },
 };
 </script>
