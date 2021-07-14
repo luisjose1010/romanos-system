@@ -13,6 +13,7 @@ unlink('../package-lock.json');
 unlink('../mix-manifest.json');
 unlink('../.gitignore');
 unlink('../info.txt');
+unlink('../.env.example');
 
 
 function deleteDirectory($dir)
