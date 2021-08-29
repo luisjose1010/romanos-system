@@ -4,6 +4,7 @@ namespace App\Controllers\Api;
 
 use Framework\Controller;
 use App\Models\ProductModel;
+use Framework\Response;
 
 
 class ProductController extends Controller
@@ -14,23 +15,23 @@ class ProductController extends Controller
 
     public function get(array $parameters)
     {
-        $data = [[
-            'id'=>0,
-            'name'=>'Pizza',
-            'sizes'=>['Pequeño', 'Mediano', 'Grande'],
-            'ingredients'=> ['Mango', 'Piña', 'Queso'],
-            'multipleIngredients'=>true
-        ],[
-            'id'=>1,
-            'name'=>'Refresco',
-            'sizes'=> ['1.5L', '2L'],
-            'ingredients'=> ['Coca-Cola', 'Pepsi'],
-            'multipleIngredients'=>false
-        ]
-        ];
-
         if (!isset($parameters['id'])) {
-            echo json_encode($data);
+            $products = ProductModel::all();
+
+            $data = [];
+
+            foreach($products as $index => $product){
+
+                // Crea la estructura de un array convertible a JSON
+                $data[$index]['id'] = $product->id;
+                $data[$index]['name'] = $product->name;
+                $data[$index]['ingredients'] = $product->ingredients->toArray();
+                $data[$index]['sizes'] = $product->sizes->toArray();
+                $data[$index]['multipleIngredients'] = $product->multipleIngredients == 1 ? true : false;
+            }
+            
+            $response = new Response();
+            $response->json($data);
         }
     }
 }

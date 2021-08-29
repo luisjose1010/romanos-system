@@ -20,23 +20,26 @@
               v-if="product.name"
               v-model="product.ingredients"
               name="ingredient"
-              :items="getProductSelected().ingredients"
+              :items="getIngredients().map((ingredient) => ingredient.name)"
               :rules="noEmpty"
               label="Ingredientes"
               :multiple="getProductSelected().multipleIngredients"
               chips
               persistent-hint
               required
-            ></v-select>
+              return-object
+            >
+            </v-select>
 
             <v-select
               v-if="product.name"
               v-model="product.size"
               name="size"
-              :items="getProductSelected().sizes"
+              :items="getSizes().map((size) => size.name)"
               :rules="noEmpty"
               label="Tamaños"
               required
+              return-object
             ></v-select>
           </v-col>
 
@@ -85,19 +88,31 @@
                 <td>{{ item.size }}</td>
               </tr>
             </tbody>
-
-            <v-btn @click="resetProductSold" color="red" dark>
-              <v-icon dark> mdi-trash-can-outline </v-icon>
-            </v-btn>
           </v-simple-table>
+          <v-row>
+            <v-col md="2">
+              <v-btn @click="resetProductsSold" color="red" dark>
+                <v-icon dark> mdi-trash-can-outline </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col md="2">
+              <v-btn @click="sendProductsSold" color="green" dark>
+                <v-icon dark> mdi-send </v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-col>
+      </v-row>
+
+      <v-row>
+        <pre>{{ dataSoldProducts }}</pre>
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import api from "../api";
 
 export default {
   data() {
@@ -112,6 +127,7 @@ export default {
         size: "",
       },
       soldProducts: [],
+      dataSoldProducts: [],
     };
   },
   methods: {
@@ -121,25 +137,63 @@ export default {
     },
     addProductSold() {
       if (this.$refs.form.validate()) {
+        // Introduce en los productos vendidos
         var id = this.getProductSelected().id;
         var name = this.product.name;
         var ingredients = this.product.ingredients;
         var size = this.product.size;
         this.soldProducts.push({ id, name, ingredients, size });
+
+        // Introduce en los productos que se enviarán a la api
+        var dataIngredients = [];
+        var dataSize = [];
+
+        this.getIngredients().forEach((mappedIngredient) => {
+          if (Array.isArray(ingredients)) {
+            ingredients.forEach((ingredient) => {
+              if (String(ingredient) === String(mappedIngredient.name)) {
+                dataIngredients.push(mappedIngredient);
+              }
+            });
+          } else {
+            if (ingredients === mappedIngredient.name) {
+              dataIngredients.push(mappedIngredient);
+            }
+          }
+        });
+
+        this.getSizes().forEach((mappedSize) => {
+          if (String(size) === String(mappedSize.name)) {
+            dataSize.push(mappedSize);
+          }
+        });
+
+        this.dataSoldProducts.push({ id, name, dataIngredients, dataSize });
+
         this.reset();
       }
     },
-    resetProductSold() {
+    resetProductsSold() {
       this.soldProducts = [];
+      this.dataSoldProducts = [];
     },
-    getProductsNames() {
-      var productsNames = [];
-      var products = this.products;
+    sendProductsSold() {},
 
-      products.forEach((item) => {
-        productsNames.push(item.name);
+    getProductsNames() {
+      let products = this.products;
+
+      let productsNames = products.map(function (product) {
+        return product.name;
       });
       return productsNames;
+    },
+    getIngredients() {
+      let ingredients = [...this.getProductSelected().ingredients];
+      return ingredients;
+    },
+    getSizes() {
+      let sizes = [...this.getProductSelected().sizes];
+      return sizes;
     },
     getProductSelected() {
       if (this.product !== undefined) {
@@ -151,9 +205,9 @@ export default {
     },
   },
   mounted() {
-    axios
-      .get("/api/producto")
-      .then(response => this.products = response.data)
+    api
+      .get("/producto")
+      .then((response) => (this.products = response.data))
       .catch(function (error) {
         // handle error
         console.log(error);

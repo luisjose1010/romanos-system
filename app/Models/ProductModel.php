@@ -2,43 +2,19 @@
 
 namespace App\Models;
 
-use Framework\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductModel extends Model
 {
-    public function get(int $id)
+    protected $table = 'product';
+
+    public function ingredients()
     {
-        $sql = "SELECT * FROM $this->table WHERE id=:id";
-        $statement = $this->dbConnection->prepare($sql);
-        $statement->execute(array(':id' => $id));
-        $results = $statement->fetchAll();
-        $result = array();
-
-        foreach($results as $item){
-            $result[] = $item;
-        }
-
-        return $result[0];
+        return $this->hasMany(IngredientModel::class, "{$this->table}_id");
     }
 
-    public function getAll()
+    public function sizes()
     {
-        $sql = "SELECT * FROM $this->table";
-        $statement = $this->dbConnection->prepare($sql);
-        $statement->execute();
-        $results = $statement->fetchAll();
-        $result = array();
-
-        foreach($results as $item){
-            $result[] = $item;
-        }
-
-        return $result;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->table = 'producto';
+        return $this->hasMany(SizeModel::class, "{$this->table}_id");
     }
 }
