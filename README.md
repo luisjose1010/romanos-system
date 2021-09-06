@@ -1,38 +1,37 @@
-### Features
-- VueJS
-- Vuetify
-- Composer
-
 # Romano's System
 
-**Table of Contents**
+## Table of Contents
 
-[TOCM]
-
-[TOC]
+1. [Descripción](##Descripción)
+2. [Guías de estilos](#Guía-de-estilos)
+3. [Tecnologías](##Tecnologías)
+4. [Scripts](##Scripts)
 
 ## Descripción
 
 Sistema de ventas de Romano's Pizza
 
-## Guía de estilos de php
+## Guía de estilos
+
+### Código PHP
 
 Se sigue la convención de php basada en [PSR-12](https://www.php-fig.org/psr/psr-12/ "PSR-12").
 
-
-## Guía de estilos de los commits
+### Commits de GIT
 
 Se sigue la siguiente convención:
 
-1. Un encabezado con el titulo o un resumen del commit, que debe comenzar por un sustantivo, describiendo la razón del commit.
+1. Un encabezado con el titulo o un resumen del commit, describiendo la razón del commit. Debe comenzar por un sustantivo o un imperativo. No debe tener más de 50 caracteres.
 
-2. Un cuerpo donde se describan los cambios realizados en el commit y su función. termina en punto, pueden comenzar con un sustantivo y pueden ser varios.
+2. Un cuerpo donde se describen todos los cambios realizados en el commit y su función. Se recomienda comenzar con un sustantivo o imperativo, pero es más flexible. Pueden haber varios parrafos de información, separados por lineas en blanco. Cada linea debe tener máximo 72 caracteres. Debe terminar en punto.
 
-3. Un pie con información extra, como por ejemplo el issue que se está resolviendo.
+3. Referencias a issues que se están resolviendo en el commit o que están relacionados (opcional).
 
-### Forma
+#### Forma
 
-```
+Forma y descripción de un commit válido, según los puntos anteriores (se encuentra en el idioma inglés).
+
+```text
 Short (50 chars or less) summary
 
 More detailed explanatory text. Wrap it to 72 characters. The blank
@@ -56,13 +55,13 @@ Resolves: #123
 See also: #456, #789
 ```
 
-### Ejemplos
+#### Ejemplos
 
-```
+```text
 Fix typo in introduction to user guide
 ```
 
-```
+```text
 Derezz the master control program
 
 MCP turned out to be evil and had become intent on world domination.
@@ -70,7 +69,7 @@ This commit throws Tron's disc into MCP (causing its deresolution)
 and turns it back into a chess game.
 ```
 
-```
+```text
 Simplify serialize.h's exception handling
 
 Remove the 'state' and 'exceptmask' from serialize.h's stream
@@ -90,24 +89,47 @@ fail(), clear(n) and exceptions() are just never called. Delete
 them.
 ```
 
-### Véase también
+#### Véase también
 
-https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53
-https://chris.beams.io/posts/git-commit/
+<https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53>
 
+<https://chris.beams.io/posts/git-commit/>
 
 ## Tecnologías
 
+### Features
+
+- VueJS
+- Vuetify
+- Composer
+
 El proyecto está desarrollado sobre el framework [Simple Framework](https://github.com/Goblins-Studios/simple-framework "Simple Framework").
 
-El proyecto utiliza NodeJS y Composer para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
+El proyecto utiliza [NodeJS](https://nodejs.org/es/ "NodeJS") y [Composer](https://getcomposer.org/ "Composer") para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
 
 Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.
 
-`composer install`
-`composer dump-autoload`
-`npm install`
-`npm run dev`
+Para comenzar a utilizar el proyecto, puede ejecutar los comandos indicados en los siguientes apartados.  
+
+### Instalar dependencias de **Composer**
+
+```bash
+composer install
+```
+
+```bash
+composer dump-autoload
+```
+
+### Instalar dependencias de **NodeJS**
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
 
 ## Scripts
 
@@ -115,12 +137,16 @@ Para la ejecución de scripts php se utilizan los scripts de composer configurad
 
 En cada apartado se puede encontrar los scripts configurados en la aplicación y su utilización en la terminal de comandos mediante Composer.
 
-# Eliminar archivos de desarrollo
+### Eliminar archivos de desarrollo
 
 Elimina los archivos y dependencias javascript innecesarias en el entorno de producción, una vez ha sido compilado lo necesario y se va a servir la aplicación.
 
-`composer deleteDevFiles`
+```bash
+composer deleteDevFiles
+```
 
 o
 
-`composer run-script deleteDevFiles`
+```bash
+composer run-script deleteDevFiles
+```
