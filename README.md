@@ -108,3 +108,19 @@ Realiza la instalacion de las dependencia del proyecto y compilar los archivos m
 `composer dump-autoload`
 `npm install`
 `npm run dev`
+
+## Scripts
+
+Para la ejecución de scripts php se utilizan los scripts de composer configurados en el archivo json correspondiente.
+
+En cada apartado se puede encontrar los scripts configurados en la aplicación y su utilización en la terminal de comandos mediante Composer.
+
+# Eliminar archivos de desarrollo
+
+Elimina los archivos y dependencias javascript innecesarias en el entorno de producción, una vez ha sido compilado lo necesario y se va a servir la aplicación.
+
+`composer deleteDevFiles`
+
+o
+
+`composer run-script deleteDevFiles`
