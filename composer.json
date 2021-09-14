@@ -22,6 +22,8 @@
         "illuminate/database": "^7.30"
     },
     "scripts": {
+        "buildSchemaDatabase": "Scripts\\Database::buildSchema",
+        "defaultSeedDatabase": "Scripts\\Database::defaultSeed",
         "deleteDevFiles": "Scripts\\Files::deleteDevelopment"
     }
 }

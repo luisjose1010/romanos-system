@@ -46,5 +46,7 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-    ]
+    ],
+
+    'path' => __DIR__ . '/../database/'
 ];

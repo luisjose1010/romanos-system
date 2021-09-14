@@ -131,6 +131,26 @@ npm install
 npm run dev
 ```
 
+### Configuración de la base de datos
+
+La base de datos a utilizar debe ser configurada en el archivo `.env` del proyecto, así como otras características configurables desde ese archivo. El archivo `.env.example` se puede encontrar como un ejemplo de archivo `.env`.
+
+Una vez realizada la configuración para la conexión con la base de datos, en caso de que sea nueva o no tenga la estructura necesaria para la aplicación, se pueden ejecutar scripts para crear el esquema (o "Schema") necesario de la base de datos, así como poblarlos con registros, mediante lo que se suele llamar "Seed". En la carpeta database se encuentran los archivos que contiene este esquema y estas semillas, con una finalidad similar a la que se pueden encontrar en marcos de trabajo más desarollados con el uso de "migrations". Debido a esto, se puede encontrar la fecha de creación comentada al principio de los archivos indicados.
+
+Los scripts necesarios están en los siguientes apartados, asi como en la correspondiente lista de scripts.
+
+#### Construir esquema de base de datos
+
+```bash
+composer buildSchemaDatabase
+```
+
+#### Insertar registros en las tablas (Seed)
+
+```bash
+composer defaultSeedDatabase
+```
+
 ## Scripts
 
 Para la ejecución de scripts php se utilizan los scripts de composer configurados en el archivo json correspondiente.
@@ -149,4 +169,20 @@ o
 
 ```bash
 composer run-script deleteDevFiles
+```
+
+### Base de datos
+
+Scripts relacionados con la base de datos
+
+#### Crear esquema de base de datos
+
+```bash
+composer buildSchemaDatabase
+```
+
+#### Crear registros en las tablas (o Seed)
+
+```bash
+composer defaultSeedDatabase
 ```

@@ -10,4 +10,10 @@ class DatabaseConfiguration
         
         return $configuration['connections'][$default];
     }
+
+    public static function getPath(){
+        $configuration = include __DIR__ . '/../../config/database.php';
+        
+        return $configuration['path'];
+    }
 }
