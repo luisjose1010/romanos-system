@@ -25,5 +25,8 @@
         "buildSchemaDatabase": "Scripts\\Database::buildSchema",
         "defaultSeedDatabase": "Scripts\\Database::defaultSeed",
         "deleteDevFiles": "Scripts\\Files::deleteDevelopment"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }

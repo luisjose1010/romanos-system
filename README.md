@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-1. [Descripción](##Descripción)
+1. [Descripción](#Descripción)
 2. [Guías de estilos](#Guía-de-estilos)
-3. [Tecnologías](##Tecnologías)
-4. [Scripts](##Scripts)
+3. [Tecnologías](#Tecnologías)
+4. [Scripts](#Scripts)
 
 ## Descripción
 
@@ -15,7 +15,7 @@ Sistema de ventas de Romano's Pizza
 
 ### Código PHP
 
-Se sigue la convención de php basada en [PSR-12](https://www.php-fig.org/psr/psr-12/ "PSR-12").
+Se utiliza "phpcs" para la documentación y el seguimiento de la guía de estilo. Se sigue la convención de php basada en la especificación [PSR-12](https://www.php-fig.org/psr/psr-12/ "PSR-12"). El archivo `phpcs.xml` contiene el conjunto de reglas del estándar PSR-12 y fue extraido del repositorio de "phpcs", que se encuentra en [phpcs PSR-12](https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/PSR12/ruleset.xml "phpcs PSR-12"). El archivo fue modificado para aceptar, también, el final de linea (EOL) utilizado en windows.
 
 ### Commits de GIT
 
