@@ -1,7 +1,6 @@
-
-import Vue from 'vue'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import Vue from 'vue';
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
 import Vuetify from 'vuetify';
 
 Vue.use(Vuetify);
@@ -10,20 +9,20 @@ const requireComponent = require.context(
   // La ruta relativa de la carpeta de componentes
   './components',
   // Si mirar o no en las subcarpetas
-  true
-)
+  true,
+);
 
-requireComponent.keys().forEach(fileName => {
+requireComponent.keys().forEach((fileName) => {
   // Obtener la configuración de los componentes
-  const componentConfig = requireComponent(fileName)
+  const componentConfig = requireComponent(fileName);
 
   // Obtener el nombre PascalCase del componente
   const componentName = upperFirst(
     camelCase(
-      // Quitar el `./`en el comienzo y la extensión del nombre del archivo 
-      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
-    )
-  )
+      // Quitar el `./`en el comienzo y la extensión del nombre del archivo
+      fileName.replace(/^\.\/(.*)\.\w+$/, '$1'),
+    ),
+  );
 
   // Registrar el componente a nivel global
   Vue.component(
@@ -31,11 +30,13 @@ requireComponent.keys().forEach(fileName => {
     // Busca las opciones de componentes en `.default`, que
     // existen si el componente fue exportado con `export default`,
     // de lo contrario volver a la raíz del módulo.
-    componentConfig.default || componentConfig
-  )
-})
+    componentConfig.default || componentConfig,
+  );
+});
 
 const app = new Vue({
-    el: "#app",
-    vuetify: new Vuetify()
-})
+  el: '#app',
+  vuetify: new Vuetify(),
+});
+
+export default app;

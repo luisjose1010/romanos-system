@@ -17,9 +17,9 @@ Sistema de ventas de Romano's Pizza
 
 Se utiliza "phpcs" para la documentación y el seguimiento de la guía de estilo. Se sigue la convención de php basada en la especificación [PSR-12](https://www.php-fig.org/psr/psr-12/ "PSR-12"). El archivo `phpcs.xml` contiene las configuraciones necesarias, así como el conjunto de reglas del estándar PSR-12 extraido del repositorio de "phpcs", que se encuentra en [phpcs PSR-12](https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/PSR12/ruleset.xml "phpcs PSR-12"). El archivo fue modificado para aceptar también el final de linea (EOL) utilizado en windows, además del basado en unix.
 
-### Código Javascript
+### Código JavaScript
 
-Se utiliza "ESlint" para la documentación y el seguimiento de la guía de estilo indicada al desarrollar código en lenguaje Javascript. Se sigue la convencion de Javascript basada en la especificación de [Airbnb](https://github.com/airbnb/javascript "Airbnb"). Al utilizar el framework Vue.js, se sigue la especificación oficial encontrada en su [página](https://vuejs.org/v2/style-guide/ "Vue.js"). En el archivo `.eslintrc.json` se encuentra el conjunto de reglas y configuraciones necesarias que extienden de el estándar de Airbnb y demás (incluido Vue.js), con la modificación que permite utilizar tanto el final de linea de windows, como el basado en unix.
+Se utiliza "ESlint" para la documentación y el seguimiento de la guía de estilo indicada al desarrollar código en lenguaje JavaScript. Se sigue la convencion de JavaScript basada en la especificación de [Airbnb](https://github.com/airbnb/javascript "Airbnb"). Al utilizar el framework Vue.js, se sigue la especificación oficial encontrada en su [página](https://vuejs.org/v2/style-guide/ "Vue.js"). En el archivo `.eslintrc.json` se encuentra el conjunto de reglas y configuraciones necesarias que extienden de el estándar de Airbnb y demás (incluido Vue.js), con la modificación que permite utilizar tanto el final de linea de windows, como el basado en unix.
 
 ### Commits de GIT
 
@@ -163,7 +163,7 @@ En cada apartado se puede encontrar los scripts configurados en la aplicación y
 
 ### Eliminar archivos de desarrollo
 
-Elimina los archivos y dependencias javascript innecesarias en el entorno de producción, una vez ha sido compilado lo necesario y se va a servir la aplicación.
+Elimina los archivos y dependencias JavaScript innecesarias en el entorno de producción, una vez ha sido compilado lo necesario y se va a servir la aplicación.
 
 ```bash
 composer deleteDevFiles
