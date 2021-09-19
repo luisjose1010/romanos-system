@@ -20,8 +20,7 @@ class ProductController extends Controller
 
             $data = [];
 
-            foreach($products as $index => $product){
-
+            foreach ($products as $index => $product) {
                 // Crea la estructura de un array convertible a JSON
                 $data[$index]['id'] = $product->id;
                 $data[$index]['name'] = $product->name;
@@ -29,7 +28,7 @@ class ProductController extends Controller
                 $data[$index]['sizes'] = $product->sizes->toArray();
                 $data[$index]['multipleIngredients'] = $product->multipleIngredients == 1 ? true : false;
             }
-            
+
             $response = new Response();
             $response->json($data);
         }

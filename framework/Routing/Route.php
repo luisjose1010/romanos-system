@@ -2,27 +2,31 @@
 
 namespace Framework\Routing;
 
-class Route {
-    
+class Route
+{
     protected $routePattern;
     protected $clousure;
     protected $method;
 
 
-    public function getRoutePattern() {
+    public function getRoutePattern()
+    {
         return $this->routePattern;
     }
 
-    public function getClousure() {
+    public function getClousure()
+    {
         return $this->clousure;
     }
 
-    public function getMethod() {
+    public function getMethod()
+    {
         return $this->method;
     }
 
 
-    function __construct($routePattern, $clousure, $method) {
+    public function __construct($routePattern, $clousure, $method)
+    {
         $this->routePattern = $routePattern;
         $this->clousure = $clousure;
         $this->method = $method;

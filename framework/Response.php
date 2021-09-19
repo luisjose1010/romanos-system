@@ -46,7 +46,7 @@ class Response
         exit();
     }
 
-    function __construct($responseCode = 200)
+    public function __construct($responseCode = 200)
     {
         $this->responseCode = $responseCode;
     }

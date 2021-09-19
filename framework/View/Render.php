@@ -12,6 +12,6 @@ class Render
         } else {
             $view = new View($view);
             $view->renderize();
-         }
+        }
     }
 }

@@ -7,39 +7,46 @@ use Framework\Configuration\ViewsConfiguration;
 use Framework\View\Render;
 use FastRoute\Dispatcher;
 
-class Routes{
-
+class Routes
+{
     protected static $routes = array();
     protected static $api = array();
 
 
-    public static function addRoute(Route $route) {
+    public static function addRoute(Route $route)
+    {
         array_push(self::$routes, $route);
     }
 
-    public static function get(string $routePattern, $clousure) {
+    public static function get(string $routePattern, $clousure)
+    {
         array_push(self::$routes, new Route($routePattern, $clousure, 'GET'));
     }
 
-    public static function post(string $routePattern, $closure) {
+    public static function post(string $routePattern, $closure)
+    {
         array_push(self::$routes, new Route($routePattern, $closure, 'POST'));
     }
 
-    public static function api(Route $apiRoute) {
+    public static function api(Route $apiRoute)
+    {
         array_push(self::$api, $apiRoute);
     }
 
-    public static function getRoutes(){
+    public static function getRoutes()
+    {
         return self::$routes;
     }
-    
-    public static function getApi(){
+
+    public static function getApi()
+    {
         return self::$api;
     }
 
     protected $routeInfo;
 
-    public function initiateRouting(){
+    public function initiateRouting()
+    {
         switch ($this->routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 Render::view(ViewsConfiguration::getNotFoundError());
@@ -50,20 +57,17 @@ class Routes{
             case Dispatcher::FOUND:
                 $handler = $this->routeInfo[1];
                 $parameters = array($this->routeInfo[2]);
-        
-                if(!is_callable($handler)) {
 
+                if (!is_callable($handler)) {
                     // Si la función está en forma de un String del tipo 'controlador@metodo'
                     list($class, $method) = explode("@", $handler, 2);
                     $class = ControllersConfiguration::getNamespace() . $class;
-        
-                    call_user_func_array(array(new $class, $method), $parameters);
-                } else if(is_array($handler)) {
 
+                    call_user_func_array(array(new $class, $method), $parameters);
+                } elseif (is_array($handler)) {
                     // Si la función está en forma de un array del controlador y el método
                     call_user_func([new $handler[0], $handler[1]], $parameters[0]);
-                } else{
-                    
+                } else {
                     // Si simplemente es una función de tipo Clousure
                     call_user_func($handler, $parameters[0]);
                 }
