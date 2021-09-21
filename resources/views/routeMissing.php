@@ -9,15 +9,7 @@
 
 <body>
     <div id="app">
-        <app>
-            <p>
-                <v-row>
-                    <v-col>
-                        <v-alert type="error">No se ha encontrado la ruta especificada</v-alert>
-                    </v-col>
-                </v-row>
-            </p>
-        </app>
+        <route-missing></route-missing>
     </div>
 
 

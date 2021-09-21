@@ -9,11 +9,7 @@
 
 <body>
     <div id="app">
-        <app>
-            <h1>Vender</h1>
-            <sell-form>
-            </sell-form>
-        </app>
+        <sell-view></sell-view>
     </div>
 
 

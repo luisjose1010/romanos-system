@@ -9,9 +9,7 @@
 
 <body>
     <div id="app">
-        <app>
-            
-        </app>
+        <home-view></home-view>
     </div>
 
 
