@@ -3,8 +3,15 @@
     <v-container>
       <h2>Producto</h2>
       <v-row>
-        <v-form v-model="valid" method="post" ref="form">
-          <v-col sm="6" md="7">
+        <v-form
+          ref="form"
+          v-model="valid"
+          method="post"
+        >
+          <v-col
+            sm="6"
+            md="7"
+          >
             <v-overflow-btn
               v-model="product.name"
               name="name"
@@ -14,7 +21,7 @@
               label="Nombre del producto"
               editable
               required
-            ></v-overflow-btn>
+            />
 
             <v-select
               v-if="product.name"
@@ -28,8 +35,7 @@
               persistent-hint
               required
               return-object
-            >
-            </v-select>
+            />
 
             <v-select
               v-if="product.name"
@@ -40,7 +46,7 @@
               label="Tamaños"
               required
               return-object
-            ></v-select>
+            />
           </v-col>
 
           <v-btn
@@ -52,28 +58,48 @@
             Agregar
           </v-btn>
 
-          <v-btn class="ma-5" color="error" @click="reset"> Limpiar </v-btn>
+          <v-btn
+            class="ma-5"
+            color="error"
+            @click="reset"
+          >
+            Limpiar
+          </v-btn>
         </v-form>
 
-        <v-col sm="6" md="5">
+        <v-col
+          sm="6"
+          md="5"
+        >
           <h2>Total</h2>
           <v-simple-table>
             <thead>
               <tr>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Código</th>
-                <th class="text-left">Ingredientes</th>
-                <th class="text-left">Tamaño</th>
+                <th class="text-left">
+                  Nombre
+                </th>
+                <th class="text-left">
+                  Código
+                </th>
+                <th class="text-left">
+                  Ingredientes
+                </th>
+                <th class="text-left">
+                  Tamaño
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in soldProducts" :key="index">
+              <tr
+                v-for="(item, index) in soldProducts"
+                :key="index"
+              >
                 <td>{{ item.name }}</td>
                 <td>{{ item.id }}</td>
                 <td v-if="Array.isArray(item.ingredients)">
                   <v-chip
-                    v-for="(ingredient, index) in item.ingredients"
-                    :key="index"
+                    v-for="(ingredient, index2) in item.ingredients"
+                    :key="index2"
                     color="red"
                     text-color="white"
                   >
@@ -91,13 +117,25 @@
           </v-simple-table>
           <v-row>
             <v-col md="2">
-              <v-btn @click="resetProductsSold" color="red" dark>
-                <v-icon dark> mdi-trash-can-outline </v-icon>
+              <v-btn
+                color="red"
+                dark
+                @click="resetProductsSold"
+              >
+                <v-icon dark>
+                  mdi-trash-can-outline
+                </v-icon>
               </v-btn>
             </v-col>
             <v-col md="2">
-              <v-btn @click="sendProductsSold" color="green" dark>
-                <v-icon dark> mdi-send </v-icon>
+              <v-btn
+                color="green"
+                dark
+                @click="sendProductsSold"
+              >
+                <v-icon dark>
+                  mdi-send
+                </v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -112,23 +150,35 @@
 </template>
 
 <script>
-import api from "../api";
+import api from '../api';
 
 export default {
   data() {
     return {
       valid: false,
-      noEmpty: [(v) => !!v || "Campo requerido"],
+      noEmpty: [(v) => !!v || 'Campo requerido'],
 
       products: [],
       product: {
-        name: "",
-        ingredients: "",
-        size: "",
+        name: '',
+        ingredients: '',
+        size: '',
       },
       soldProducts: [],
       dataSoldProducts: [],
     };
+  },
+  mounted() {
+    api
+      .get('/producto')
+      .then((response) => { this.products = response.data; })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      })
+      .then(() => {
+        // always executed
+      });
   },
   methods: {
     reset() {
@@ -138,15 +188,17 @@ export default {
     addProductSold() {
       if (this.$refs.form.validate()) {
         // Introduce en los productos vendidos
-        var id = this.getProductSelected().id;
-        var name = this.product.name;
-        var ingredients = this.product.ingredients;
-        var size = this.product.size;
-        this.soldProducts.push({ id, name, ingredients, size });
+        const { id } = this.getProductSelected();
+        const { name } = this.product;
+        const { ingredients } = this.product;
+        const { size } = this.product;
+        this.soldProducts.push({
+          id, name, ingredients, size,
+        });
 
         // Introduce en los productos que se enviarán a la api
-        var dataIngredients = [];
-        var dataSize = [];
+        const dataIngredients = [];
+        const dataSize = [];
 
         this.getIngredients().forEach((mappedIngredient) => {
           if (Array.isArray(ingredients)) {
@@ -155,10 +207,8 @@ export default {
                 dataIngredients.push(mappedIngredient);
               }
             });
-          } else {
-            if (ingredients === mappedIngredient.name) {
-              dataIngredients.push(mappedIngredient);
-            }
+          } else if (ingredients === mappedIngredient.name) {
+            dataIngredients.push(mappedIngredient);
           }
         });
 
@@ -168,7 +218,9 @@ export default {
           }
         });
 
-        this.dataSoldProducts.push({ id, name, dataIngredients, dataSize });
+        this.dataSoldProducts.push({
+          id, name, dataIngredients, dataSize,
+        });
 
         this.reset();
       }
@@ -180,41 +232,29 @@ export default {
     sendProductsSold() {},
 
     getProductsNames() {
-      let products = this.products;
+      const { products } = this;
 
-      let productsNames = products.map(function (product) {
-        return product.name;
-      });
+      const productsNames = products.map((product) => product.name);
       return productsNames;
     },
     getIngredients() {
-      let ingredients = [...this.getProductSelected().ingredients];
+      const ingredients = [...this.getProductSelected().ingredients];
       return ingredients;
     },
     getSizes() {
-      let sizes = [...this.getProductSelected().sizes];
+      const sizes = [...this.getProductSelected().sizes];
       return sizes;
     },
     getProductSelected() {
+      let found = null;
+
       if (this.product !== undefined) {
-        var found = this.products.find(
-          (item) => item.name == this.product.name
+        found = this.products.find(
+          (item) => item.name === this.product.name,
         );
       }
       return found;
     },
-  },
-  mounted() {
-    api
-      .get("/producto")
-      .then((response) => (this.products = response.data))
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
   },
 };
 </script>

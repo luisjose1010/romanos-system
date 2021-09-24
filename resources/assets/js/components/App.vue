@@ -1,12 +1,16 @@
 <template>
   <v-app>
     <v-container fluid>
-      <v-navigation-drawer v-model="drawer" app dark>
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        dark
+      >
         <v-list dense>
           <v-list-item
-            link
             v-for="item in nav"
             :key="item.title"
+            link
             :href="item.link"
             :title="item.title"
             text
@@ -21,10 +25,17 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-app-bar app color="cyan darken-4" dark>
-        <img src="./../../img/romanos-logo.jpg" alt="Romano's Pizza" />
+      <v-app-bar
+        app
+        color="cyan darken-4"
+        dark
+      >
+        <img
+          src="./../../img/romanos-logo.jpg"
+          alt="Romano's Pizza"
+        >
 
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-toolbar-items class="d-none d-md-flex">
           <v-btn
             v-for="item in nav"
@@ -32,18 +43,19 @@
             :href="item.link"
             :title="item.title"
             text
-            >{{ item.text }}</v-btn
           >
+            {{ item.text }}
+          </v-btn>
         </v-toolbar-items>
 
         <v-app-bar-nav-icon
           class="d-md-none"
           @click.stop="drawer = !drawer"
-        ></v-app-bar-nav-icon>
+        />
       </v-app-bar>
 
       <v-main>
-        <slot></slot>
+        <slot />
       </v-main>
     </v-container>
   </v-app>
@@ -51,28 +63,28 @@
 
 <script>
 export default {
-  data: function () {
+  data() {
     return {
       dialog: false,
       nav: [
         {
-          text: "Inicio",
-          title: "Página de inicio",
-          icon: "mdi-home",
-          link: "/",
+          text: 'Inicio',
+          title: 'Página de inicio',
+          icon: 'mdi-home',
+          link: '/',
         },
         {
-          text: "Productos",
-          title: "lleva a la pagina de productos",
-          icon: "mdi-cart",
-          link: "/productos",
+          text: 'Productos',
+          title: 'lleva a la pagina de productos',
+          icon: 'mdi-cart',
+          link: '/productos',
         },
         {
-          text: "Vender",
-          title: "lleva a la pagina para vender",
-          icon: "",
-          link: "/vender/agregar",
-        }
+          text: 'Vender',
+          title: 'lleva a la pagina para vender',
+          icon: '',
+          link: '/vender/agregar',
+        },
       ],
       drawer: false,
     };
