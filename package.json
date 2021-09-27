@@ -1,43 +1,56 @@
 {
   "name": "romanos-system",
   "version": "1.0.0",
+  "private": true,
   "description": "Romano's Pizza sales system",
-  "main": "index.js",
+  "author": {
+    "name": "luisjose1010"
+  },
   "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "serve": "vue-cli-service serve --port 3000",
+    "build": "vue-cli-service build --no-clean",
+    "lint": "vue-cli-service lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/luisjose1010/romanos-system.git"
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "register-service-worker": "^1.7.1",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-0"
   },
-  "keywords": [],
-  "author": "luisjose1010",
-  "license": "EULA",
-  "bugs": {
-    "url": "https://github.com/luisjose1010/romanos-system/issues"
-  },
-  "homepage": "https://github.com/luisjose1010/romanos-system#readme",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
     "@mdi/font": "^5.4.55",
-    "cross-env": "^7.0.2",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-vue": "^7.18.0",
-    "laravel-mix": "^5.0.4",
-    "resolve-url-loader": "^3.1.0",
     "sass": "^1.26.10",
-    "sass-loader": "^8.0.2",
-    "vue": "^2.6.11",
-    "vue-template-compiler": "^2.6.11"
+    "sass-loader": "^8.0.2"
   },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "vuetify": "^2.3.7"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "romanos-system@1.0.0",
+  "bugs": {
+    "url": "https://github.com/luisjose1010/romanos-system/issues"
+  },
+  "homepage": "https://github.com/luisjose1010/romanos-system#readme",
+  "keywords": [],
+  "license": "EULA",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisjose1010/romanos-system.git"
   }
 }

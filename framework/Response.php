@@ -3,6 +3,7 @@
 namespace Framework;
 
 use Framework\View\Render;
+use Framework\Configuration\AppConfiguration;
 
 class Response
 {
@@ -49,5 +50,11 @@ class Response
     public function __construct($responseCode = 200)
     {
         $this->responseCode = $responseCode;
+
+        if (!headers_sent()) {
+            if (AppConfiguration::getDebugMode()) {
+                header("Access-Control-Allow-Origin: *");
+            }
+        }
     }
 }

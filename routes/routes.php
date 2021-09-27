@@ -2,7 +2,5 @@
 
 use Framework\Routing\Routes;
 
-Routes::get('/', 'HomeController@index');
-
-Routes::get('/vender', 'SellController@index');
-Routes::get('/vender/agregar', 'SellController@add');
+// LLama al controlador principal con cualquier ruta que no use el servidor
+Routes::get('/[{query:.+}]', 'HomeController@index');

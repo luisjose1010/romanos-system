@@ -49,7 +49,7 @@ class Routes
     {
         switch ($this->routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
-                Render::view(ViewsConfiguration::getNotFoundError());
+                echo 'Error: Ruta no encontrada';
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 echo 'Error: Metodo incorrecto';
