@@ -196,3 +196,29 @@ composer buildSchemaDatabase
 ```bash
 composer defaultSeedDatabase
 ```
+
+### NodeJS
+
+#### Construir la aplicación NodeJS en modo de desarrollo
+
+```bash
+npm run dev
+```
+
+#### Construir la aplicación NodeJS en modo de producción
+
+```bash
+npm run build
+```
+
+#### Servir la aplaicación NodeJS con cambios "en caliente"
+
+```bash
+npm run serve
+```
+
+#### Realizar la verificación del código JavaScript de NodeJS (lint)
+
+```bash
+npm run lint
+```

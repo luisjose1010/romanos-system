@@ -9,6 +9,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build --no-clean",
+    "dev": "vue-cli-service build --no-clean --mode development",
     "lint": "vue-cli-service lint"
   },
   "main": "index.js",
