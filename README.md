@@ -113,6 +113,8 @@ El proyecto utiliza [NodeJS](https://nodejs.org/es/ "NodeJS") y [Composer](https
 
 Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.
 
+## Configuración inicial del proyecto
+
 Para comenzar a utilizar el proyecto, puede ejecutar los comandos indicados en los siguientes apartados.  
 
 ### Instalar dependencias de **Composer**
@@ -135,7 +137,11 @@ npm install
 npm run dev
 ```
 
-### Configuración de la base de datos
+### Configuración inicial de NodeJS
+
+Para configurar NodeJS se necesita un archivo `.env.local` en la raiz del proyecto con las variables de entorno necesarias, incluyendo el "Host" y la "URL" de la API. El archivo `.env.local.example` se puede encontrar como un ejemplo de archivo `.env.local`.
+
+### Configuración inicial de la base de datos y el código PHP
 
 La base de datos a utilizar debe ser configurada en el archivo `.env` del proyecto, así como otras características configurables desde ese archivo. El archivo `.env.example` se puede encontrar como un ejemplo de archivo `.env`.
 
