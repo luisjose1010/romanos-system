@@ -4,9 +4,9 @@ namespace Framework\Configuration;
 
 class AppConfiguration
 {
-    public static function getDebugMode(): bool
+    public static function getDevelopmentMode(): bool
     {
         $configuration = include __DIR__ . '/../../config/app.php';
-        return $configuration['debugMode'];
+        return $configuration['developmentMode'];
     }
 }

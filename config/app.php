@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "debugMode" => $_ENV['APP_DEBUG']
+    "developmentMode" => $_ENV['APP_DEVELOPMENT'],
 ];
