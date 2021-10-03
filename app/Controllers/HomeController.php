@@ -3,12 +3,13 @@
 namespace App\Controllers;
 
 use Framework\Controller;
-use Framework\View\Render;
+use Framework\Response;
 
 class HomeController extends Controller
 {
     public function index($parameters = null)
     {
-        Render::view('home');
+        $response = new Response();
+        $response->view('Home');
     }
 }
