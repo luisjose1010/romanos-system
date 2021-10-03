@@ -1,7 +1,7 @@
 <template>
-  <div class="sell">
+  <v-main>
     <SellForm></SellForm>
-  </div>
+  </v-main>
 </template>
 
 <script>

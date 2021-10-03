@@ -1,11 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/vender">Vender</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="@/assets/romanos-logo.jpg"
+          transition="scale-transition"
+          width="150"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn to="/" text>
+        <span class="mr-2">Inicio</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+
+      <v-btn to="/vender" text>
+        <span class="mr-2">Vender</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <router-view />
+  </v-app>
 </template>
 
 <style lang="scss">
@@ -15,18 +36,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

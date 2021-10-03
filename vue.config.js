@@ -78,4 +78,8 @@ module.exports = {
     config.resolve.alias
       .set('@', path.join(__dirname, appPath));
   },
+
+  transpileDependencies: [
+    'vuetify',
+  ],
 };
