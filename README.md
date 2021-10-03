@@ -113,6 +113,8 @@ El proyecto utiliza [NodeJS](https://nodejs.org/es/ "NodeJS") y [Composer](https
 
 Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.
 
+La carpeta donde se encuentra la mayoría de los archivos necesarios para desarrollar sobre NodeJS es "resources/src".
+
 ## Configuración inicial del proyecto
 
 Para comenzar a utilizar el proyecto, puede ejecutar los comandos indicados en los siguientes apartados.  
