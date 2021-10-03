@@ -1,10 +1,17 @@
 const path = require('path');
 const fs = require('fs');
 
-const outputDir = 'public_html';
+// eslint-disable-next-line import/no-extraneous-dependencies
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const pathOutputDir = `./${outputDir}/`;
-const regexFiles = /^.*\.js$|^.*\.json$|^.*\.html$/;
+const appPath = './resources/src';
+const staticFilesPath = `${appPath}/static`;
+
+const outputDir = 'public_html';
+const outputDirPath = `./${outputDir}/`;
+
+// Todos los archivos, menos "index.php" y ".htaccess", que no se utilizan en la build
+const regexFiles = /^(?!.*(index\.php|\.htaccess)$)/;
 
 function deleteFolder(directoryPath) {
   if (fs.existsSync(directoryPath)) {
@@ -23,15 +30,15 @@ function deleteFolder(directoryPath) {
 }
 
 // Limpia las carpetas innecesarias de la ruta de salida para la build
-fs.readdirSync(pathOutputDir, { withFileTypes: true })
+fs.readdirSync(outputDirPath, { withFileTypes: true })
   .filter((dirent) => dirent.isDirectory())
   .map((dirent) => dirent.name)
-  .forEach((dirent) => deleteFolder(pathOutputDir + dirent));
+  .forEach((dirent) => deleteFolder(outputDirPath + dirent));
 
 // Limpia los archivos innecesarios de la ruta de salida para la build
-fs.readdirSync(pathOutputDir)
+fs.readdirSync(outputDirPath)
   .filter((file) => regexFiles.test(file))
-  .map((file) => fs.unlinkSync(pathOutputDir + file));
+  .map((file) => fs.unlinkSync(outputDirPath + file));
 
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
@@ -40,13 +47,35 @@ module.exports = {
   outputDir,
   indexPath: 'app.html',
 
+  configureWebpack: {
+    plugins: [
+      // Configura la ruta de archivos estáticos
+      new CopyWebpackPlugin([{
+        from: staticFilesPath,
+        to: path.join(__dirname, outputDir),
+        toType: 'dir',
+        ignore: ['index.html', '.DS_Store'],
+      }]),
+    ],
+  },
+
   chainWebpack: (config) => {
+    // Configura la ruta del archivo "index.html" en la carpeta de archivos estaticos
+    config
+      .plugin('html')
+      .tap((args) => {
+        // eslint-disable-next-line no-param-reassign
+        args[0].template = path.resolve(`${staticFilesPath}/index.html`);
+        return args;
+      });
+
+    // Configura los archivos de entrada y salida de la aplicación
     config
       .entry('app')
       .clear()
-      .add('./resources/src/main.js')
+      .add(`${appPath}/main.js`)
       .end();
     config.resolve.alias
-      .set('@', path.join(__dirname, './resources/src/'));
+      .set('@', path.join(__dirname, appPath));
   },
 };
