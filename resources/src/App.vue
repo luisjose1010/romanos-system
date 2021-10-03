@@ -1,6 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -12,14 +16,20 @@
         />
       </div>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
-      <v-btn to="/" text>
+      <v-btn
+        to="/"
+        text
+      >
         <span class="mr-2">Inicio</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
 
-      <v-btn to="/vender" text>
+      <v-btn
+        to="/vender"
+        text
+      >
         <span class="mr-2">Vender</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>

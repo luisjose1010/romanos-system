@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <SellForm></SellForm>
+    <SellForm />
   </v-main>
 </template>
 

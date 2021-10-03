@@ -27,7 +27,7 @@
               v-if="product.name"
               v-model="product.ingredients"
               name="ingredient"
-              :items="getIngredients().map((ingredient) => ingredient.name)"
+              :items="getIngredients().map(ingredient => ingredient.name)"
               :rules="noEmpty"
               label="Ingredientes"
               :multiple="getProductSelected().multipleIngredients"
@@ -41,7 +41,7 @@
               v-if="product.name"
               v-model="product.size"
               name="size"
-              :items="getSizes().map((size) => size.name)"
+              :items="getSizes().map(size => size.name)"
               :rules="noEmpty"
               label="Tamaños"
               required
@@ -171,7 +171,9 @@ export default {
   mounted() {
     api
       .get('/producto')
-      .then((response) => { this.products = response.data; })
+      .then((response) => {
+        this.products = response.data;
+      })
       .catch((error) => {
         // handle error
         console.log(error);
@@ -193,7 +195,10 @@ export default {
         const { ingredients } = this.product;
         const { size } = this.product;
         this.soldProducts.push({
-          id, name, ingredients, size,
+          id,
+          name,
+          ingredients,
+          size,
         });
 
         // Introduce en los productos que se enviarán a la api
@@ -219,7 +224,10 @@ export default {
         });
 
         this.dataSoldProducts.push({
-          id, name, dataIngredients, dataSize,
+          id,
+          name,
+          dataIngredients,
+          dataSize,
         });
 
         this.reset();
@@ -249,9 +257,7 @@ export default {
       let found = null;
 
       if (this.product !== undefined) {
-        found = this.products.find(
-          (item) => item.name === this.product.name,
-        );
+        found = this.products.find((item) => item.name === this.product.name);
       }
       return found;
     },

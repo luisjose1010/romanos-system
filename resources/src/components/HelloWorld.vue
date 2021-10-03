@@ -11,7 +11,9 @@
       </v-col>
 
       <v-col>
-        <h1 center>Romano's Pizza</h1>
+        <h1 center>
+          Romano's Pizza
+        </h1>
       </v-col>
     </v-row>
   </v-container>
