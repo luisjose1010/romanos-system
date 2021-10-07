@@ -18,7 +18,7 @@ class Response
     public function json(array $content)
     {
         if (!headers_sent()) {
-            header("Content-Type: application/json");
+            header("Content-Type: application/json; charset=UTF-8");
         }
 
         http_response_code($this->responseCode);
@@ -38,7 +38,7 @@ class Response
     public function make($content, $contentType)
     {
         if (!headers_sent()) {
-            header("Content-Type: $contentType");
+            header("Content-Type: $contentType; charset=UTF-8");
         }
 
         http_response_code($this->responseCode);

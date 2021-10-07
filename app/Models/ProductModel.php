@@ -8,12 +8,14 @@ class ProductModel extends Model
 {
     protected $table = 'product';
 
-    public function ingredients()
+    protected $fillable = ['name', 'multiple_ingredients'];
+
+    public function ingredient()
     {
         return $this->hasMany(IngredientModel::class, "{$this->table}_id");
     }
 
-    public function sizes()
+    public function size()
     {
         return $this->hasMany(SizeModel::class, "{$this->table}_id");
     }

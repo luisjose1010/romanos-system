@@ -255,3 +255,5 @@ node_modules
 .env.*.local
 
 pnpm-debug.log*
+
+.bak
