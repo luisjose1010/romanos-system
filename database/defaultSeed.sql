@@ -1,25 +1,62 @@
--- Fecha: 13-09-2021 17:23
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1:3307
+-- Tiempo de generación: 16-10-2021 a las 12:48:27
+-- Versión del servidor: 10.3.9-MariaDB
+-- Versión de PHP: 7.2.10
 
-INSERT INTO `product` (`id`, `name`, `multiple_ingredients`) VALUES
-    (NULL, 'Pizza', '1'),
-    (NULL, 'Refresco', '0'),
-    (NULL, 'Servicio de tequeños', '0');
 
-INSERT INTO `size` (`id`, `name`, `product_id`) VALUES
-    (NULL, 'Personal', '1'),
-    (NULL, 'Mediana', '1'),
-    (NULL, 'Familiar', '1'),
-    (NULL, 'Monstruo', '1'),
-    (NULL, '1.5L', '2'),
-    (NULL, '2L', '2');
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-INSERT INTO `ingredient` (`id`, `name`, `product_id`) VALUES
-    (NULL, 'Doble queso', '1'),
-    (NULL, 'Piña', '1'),
-    (NULL, 'Remolacha', '1'),
-    (NULL, 'Pepperoni', '1'),
-    (NULL, 'Tocineta', '1'),
-    (NULL, 'Jamón', '1'),
-    (NULL, 'Coca-Cola', '2'),
-    (NULL, 'Pepsi', '2'),
-    (NULL, 'Chinotto', '2');
+--
+-- Base de datos: `romanos-system`
+--
+
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `multiple_ingredients`, `updated_at`, `created_at`) VALUES
+(1, 'Pizza sin bordes', NULL, 1, NULL, NULL),
+(2, 'Servicio de tequeños', '- 10 tequeñitos\r\n- salsa tártara', 0, NULL, NULL),
+(3, 'Helado', NULL, 0, NULL, NULL);
+
+--
+-- Volcado de datos para la tabla `ingredients`
+--
+
+INSERT INTO `ingredients` (`id`, `name`, `price`, `updated_at`, `created_at`, `product_id`) VALUES
+(1, 'Batti Batti', 3, NULL, NULL, 3),
+(2, 'Mantecado', 3, NULL, NULL, 3),
+(3, 'Cocossette', 3, NULL, NULL, 3),
+(4, 'Chocolate', 3, NULL, NULL, 3),
+(5, 'Fresa', 3, NULL, NULL, 3),
+(6, 'Oreo', 3, NULL, NULL, 3);
+
+--
+-- Volcado de datos para la tabla `sizes`
+--
+
+INSERT INTO `sizes` (`id`, `name`, `updated_at`, `created_at`) VALUES
+(1, 'Familiar', NULL, NULL),
+(2, 'Mediana', NULL, NULL),
+(3, 'Personal', NULL, NULL);
+COMMIT;
+
+--
+-- Volcado de datos para la tabla `product_size`
+--
+
+INSERT INTO `product_size` (`id`, `price`, `updated_at`, `created_at`, `product_id`, `size_id`) VALUES
+(1, 9, NULL, NULL, 1, 1),
+(2, 8, NULL, NULL, 1, 2),
+(3, 4, NULL, NULL, 1, 3);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

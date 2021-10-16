@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IngredientModel extends Model
+class Client extends Model
 {
-    protected $table = 'ingredient';
 }
