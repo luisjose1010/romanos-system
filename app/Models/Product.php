@@ -19,6 +19,6 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class)->withPivot(['price']);
+        return $this->hasMany(Size::class);
     }
 }

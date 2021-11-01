@@ -3,14 +3,8 @@
 namespace App\Models;
 
 use App\Models\BaseModel as Model;
+use App\Models\Product;
 
 class Size extends Model
 {
-    protected $hidden = ['pivot'];
-    protected $appends = ['price'];
-
-    public function getPriceAttribute()
-    {
-        return $this->pivot->price;
-    }
 }

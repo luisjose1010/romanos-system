@@ -42,20 +42,11 @@ INSERT INTO `ingredients` (`id`, `name`, `price`, `updated_at`, `created_at`, `p
 -- Volcado de datos para la tabla `sizes`
 --
 
-INSERT INTO `sizes` (`id`, `name`, `updated_at`, `created_at`) VALUES
-(1, 'Familiar', NULL, NULL),
-(2, 'Mediana', NULL, NULL),
-(3, 'Personal', NULL, NULL);
+INSERT INTO `sizes` (`id`, `name`, `price`, `updated_at`, `created_at`, `product_id`) VALUES
+(1,'Familiar',  NULL, NULL, NULL, 1),
+(2, 'Mediana', NULL, NULL, NULL, 1),
+(3, 'Personal', NULL, NULL, NULL, 1);
 COMMIT;
-
---
--- Volcado de datos para la tabla `product_size`
---
-
-INSERT INTO `product_size` (`id`, `price`, `updated_at`, `created_at`, `product_id`, `size_id`) VALUES
-(1, 9, NULL, NULL, 1, 1),
-(2, 8, NULL, NULL, 1, 2),
-(3, 4, NULL, NULL, 1, 3);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
