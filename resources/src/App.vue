@@ -23,7 +23,6 @@
         text
       >
         <span class="mr-2">Inicio</span>
-        <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
 
       <v-btn
@@ -31,7 +30,6 @@
         text
       >
         <span class="mr-2">Vender</span>
-        <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 

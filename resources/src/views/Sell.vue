@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SellForm from '@/components/SellForm.vue';
+import SellForm from '@/components/OrderForm.vue';
 
 export default {
   name: 'Sell',
