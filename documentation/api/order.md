@@ -45,4 +45,6 @@ Estos parametros pueden estar de la siguiente forma:
 }
 ```
 
-Siendo los parámetros "size" e "ingredients" opcionales.
+Siendo los parámetros `size` e `ingredients` opcionales.
+
+Si el producto es de un solo ingrediente permitido, entonces `ingredients` solo debe tener un objeto en el arreglo, con su respectivo id
