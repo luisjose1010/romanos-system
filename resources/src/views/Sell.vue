@@ -20,7 +20,7 @@
 
         <v-col
           sm="12"
-          md="5"
+          md="6"
         >
           <OrdersForm
             :orders="orders"

@@ -20,6 +20,7 @@ Routes::api(new Route('/orders/all', 'Api\OrderController@postAll', 'POST'));
 
 // Ventas
 Routes::api(new Route('/sales/all', 'Api\SaleController@getAll', 'GET'));
+Routes::api(new Route('/sales/{id:\d+}/all', 'Api\SaleController@getAll', 'GET'));
 
 Routes::api(new Route('/sales', 'Api\SaleController@post', 'POST'));
 

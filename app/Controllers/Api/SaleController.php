@@ -13,13 +13,19 @@ class SaleController extends Controller
     {
     }
 
-    public function getAll()
+    public function getAll($parameters)
     {
-        if (!isset($parameters['id'])) {
-            $sales = Sale::with(['orders', 'orders.ingredients', 'orders.size'])->get();
+        $response = new Response();
 
-            $response = new Response();
+        if (!isset($parameters['id'])) {
+            $sales = Sale::orderBy('created_at', 'DESC')
+                ->with(['orders', 'orders.product', 'orders.ingredients', 'orders.size'])
+                ->get();
             $response->json($sales->toArray());
+        } else {
+            $sale = Sale::with(['orders', 'orders.product', 'orders.ingredients', 'orders.size'])
+                ->find($parameters['id']);
+            $response->json($sale->toArray());
         }
     }
 

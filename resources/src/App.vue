@@ -31,6 +31,13 @@
       >
         <span class="mr-2">Vender</span>
       </v-btn>
+
+      <v-btn
+        to="/ventas"
+        text
+      >
+        <span class="mr-2">Ventas</span>
+      </v-btn>
     </v-app-bar>
 
     <router-view />

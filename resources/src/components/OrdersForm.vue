@@ -16,6 +16,12 @@
           <th class="text-left">
             Tamaño
           </th>
+          <th class="text-left">
+            cantidad
+          </th>
+          <th class="text-left">
+            Precio unidad
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -35,8 +41,20 @@
               {{ ingredient.name }}
             </v-chip>
           </td>
-          <td v-if="item.size && item.size.name ">
-            {{ item.size.name }}
+          <td>
+            <span v-if="item.size && item.size.name ">
+              {{ item.size.name }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ item.quantity }}
+            </span>
+          </td>
+          <td>
+            <span>
+              0
+            </span>
           </td>
         </tr>
       </tbody>
@@ -109,6 +127,7 @@ export default {
         .put(`/sales/${this.sale.id}`, { paid: true })
         .then((response) => {
           this.products = response.data;
+          this.$emit('reset');
         })
         .catch((error) => {
         // handle error
