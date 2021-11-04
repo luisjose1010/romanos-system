@@ -25,9 +25,9 @@
         name="ingredients"
         :items="productSelected.ingredients"
         :item-text="item => `${item.name}`"
-        :rules="noEmpty"
+        :rules="checkIngredients"
         label="Ingredientes"
-        :multiple="productSelected.multipleIngredients"
+        multiple
         chips
         persistent-hint
         return-object
@@ -99,6 +99,13 @@ export default {
       noEmpty: [(v) => !!v || 'Campo requerido'],
       noEmptyObject: [(v) => Object.keys(v).length !== 0 || 'Campo requerido'],
       onlyQuantity: [(v) => (v > 0 && !(v % 1)) || 'Cantidad incorrecta'],
+      checkIngredients: [
+        (v) => !!v || 'Campo requerido',
+        (v) => !(v.length < this.productSelected.minIngredients)
+          || `El producto necesita al menos ${this.productSelected.minIngredients} ingredientes`,
+        (v) => !(v.length > this.productSelected.maxIngredients)
+          || `El producto tiene un máximo de ${this.productSelected.maxIngredients} ingredientes`,
+      ],
 
       products: [],
       productSelected: {},

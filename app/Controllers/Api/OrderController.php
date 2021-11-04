@@ -40,9 +40,13 @@ class OrderController extends Controller
             if (!isset($request['product'])) {
                 throw new \Exception("No se encuentra el objeto 'product'.");
             }
-            if (isset($request['ingredients'])) {
-                // Verifica que estén correctos los datos
-                $this->checkIngredients($request['ingredients'], $request['product']);
+            if (Product::find($request['product']['id'])->minIngredients > 0) {
+                if (isset($request['ingredients'])) {
+                    // Verifica que estén correctos los datos
+                    $this->checkIngredients($request['ingredients'], $request['product']);
+                } else {
+                    throw new \Exception("Este producto necesita el parametro 'ingredients'");
+                }
             }
             if (isset($request['size'])) {
                 // Verifica que estén correctos los datos
@@ -78,12 +82,17 @@ class OrderController extends Controller
 
     private function checkIngredients($ingredients, $product)
     {
-        // Verifica que el producto tenga un solo ingrediente si no permite varios
-        if (!Product::find($product['id'])->multipleIngredients) {
-            if (count($ingredients) > 1) {
-                throw new \Exception("Este producto no puede tener más de un ingrediente.");
-            }
+        $maxIngredients = Product::find($product['id'])->maxIngredients;
+        $minIngredients = Product::find($product['id'])->minIngredients;
+
+        // Verifica que el producto tenga la cantidad de ingredientes que permite
+        if (count($ingredients) > $maxIngredients) {
+            throw new \Exception("Este producto no puede tener más de $maxIngredients ingrediente/s.");
         }
+        if (count($ingredients) < $minIngredients) {
+            throw new \Exception("Este producto no puede tener menos de $minIngredients ingrediente/s.");
+        }
+
 
         // Verifica que los ingredientes pertenezcan al producto
         foreach ($ingredients as $ingredient) {

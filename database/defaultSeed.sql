@@ -21,10 +21,10 @@
 -- Volcado de datos para la tabla `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `multiple_ingredients`, `updated_at`, `created_at`) VALUES
-(1, 'Pizza sin bordes', NULL, 1, NULL, NULL),
-(2, 'Servicio de tequeños', '- 10 tequeñitos\r\n- salsa tártara', 0, NULL, NULL),
-(3, 'Helado', NULL, 0, NULL, NULL);
+INSERT INTO `products` (`id`, `name`, `description`, `max_ingredients`, `min_ingredients`, `updated_at`, `created_at`) VALUES
+(1, 'Pizza sin borde', NULL, 1, 1, NULL, NULL),
+(2, 'Servicio de tequeños', '- 10 tequeñitos\r\n- salsa tártara', 0, 0, NULL, NULL),
+(3, 'Helado', NULL, 1, 1, NULL, NULL);
 
 --
 -- Volcado de datos para la tabla `ingredients`
