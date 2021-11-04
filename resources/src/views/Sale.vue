@@ -2,9 +2,12 @@
   <v-main>
     <v-container>
       <v-card
-        class="mx-auto"
+        class="mx-auto mt-1"
       >
-        <v-list-item three-line>
+        <v-list-item
+          three-line
+          class="mb-1"
+        >
           <v-list-item-content>
             <div
               v-if="!sale.paid"
@@ -12,7 +15,7 @@
             >
               NO CONFIRMADA
             </div>
-            <div class="text-caption mb-4">
+            <div class="text-caption mb-3">
               Fecha: {{ (new Date(sale.updatedAt)).toString() }}
             </div>
             <v-list-item-title class="text-h5 mb-1 text-left">
@@ -107,6 +110,8 @@
             <span class="mt-3 text-left">Total: {{ sale.totalPrice }}$</span>
           </v-list-item-content>
         </v-list-item>
+
+        <v-divider />
 
         <v-card-actions>
           <v-btn
