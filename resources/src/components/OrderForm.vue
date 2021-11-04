@@ -6,18 +6,60 @@
     >
       <v-overflow-btn
         v-model="productSelected"
-        name="name"
+        :name="`product_${Math.random()}`"
         :items="products"
         :item-text="item => `${item.id} - ${item.name}`"
         :rules="noEmptyObject"
         :readonly="!productEditable"
         label="Producto"
+        spellcheck="false"
         editable
         persistent-hint
         return-object
         segmented
         @change="productEditable = false"
-      />
+      >
+        <template
+          v-if="productSelected && productSelected.description"
+          slot="append-outer"
+        >
+          <v-tooltip top>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                v-on="on"
+              >
+                mdi-information-outline
+              </v-icon>
+            </template>
+            <span>{{ productSelected.description }}</span>
+          </v-tooltip>
+        </template>
+
+        <template
+          slot="item"
+          slot-scope="data"
+        >
+          <v-row class="m-0">
+            <v-col sm="10">
+              {{ data.item.id }} - {{ data.item.name }}
+            </v-col>
+            <v-col sm="2">
+              <v-tooltip right>
+                <template #activator="{ on, attrs }">
+                  <v-icon
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    mdi-information-outline
+                  </v-icon>
+                </template>
+                <span>{{ data.item.description }}</span>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </template>
+      </v-overflow-btn>
 
       <v-select
         v-if="productSelected.ingredients && productSelected.ingredients.length > 0"
@@ -26,6 +68,7 @@
         :items="productSelected.ingredients"
         :item-text="item => `${item.name}`"
         :rules="checkIngredients"
+        spellcheck="false"
         label="Ingredientes"
         multiple
         chips
@@ -41,6 +84,7 @@
         :item-text="item => `${item.name}`"
         :rules="noEmpty"
         label="Tamaño"
+        spellcheck="false"
         chips
         persistent-hint
         return-object

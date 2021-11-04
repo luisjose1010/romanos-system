@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       sale: {
-        ivaRate: 4,
+        ivaRate: 0,
       },
     };
   },
@@ -60,7 +60,7 @@ export default {
     },
     reset() {
       this.sale = {
-        ivaRate: 4,
+        ivaRate: 0,
       };
     },
   },
