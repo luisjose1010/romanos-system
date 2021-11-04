@@ -8,6 +8,7 @@ use App\Models\Order;
 class Sale extends Model
 {
     protected $fillable = ['ivaRate'];
+    protected $appends = ['totalPrice'];
 
     protected $casts = [
         'paid' => 'boolean',
@@ -16,5 +17,15 @@ class Sale extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $price = 0;
+
+        foreach ($this->orders as $order) {
+            $price += $order->price;
+        }
+        return $price;
     }
 }

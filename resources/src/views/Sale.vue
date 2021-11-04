@@ -67,7 +67,7 @@
                     </td>
 
                     <td class="text-left">
-                      {{ item.product.name }} <br>
+                      {{ item.product.name }}<br>
                       {{ item.product.description }}
                     </td>
 
@@ -93,18 +93,18 @@
                     </td>
 
                     <td class="text-left">
-                      0
+                      {{ item.unitPrice }}$
                     </td>
 
                     <td class="text-left">
-                      0
+                      {{ item.price }}$
                     </td>
                   </tr>
                 </tbody>
               </template>
             </v-simple-table>
 
-            <span class="mt-3 text-left">Total: {{ 0 }}$</span>
+            <span class="mt-3 text-left">Total: {{ sale.totalPrice }}$</span>
           </v-list-item-content>
         </v-list-item>
 
@@ -150,7 +150,9 @@ export default {
       });
   },
   methods: {
-
+    parseNewLineToHtml(str) {
+      return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    },
   },
 
 };

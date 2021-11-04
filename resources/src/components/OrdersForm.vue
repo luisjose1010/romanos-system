@@ -53,7 +53,7 @@
           </td>
           <td>
             <span>
-              0
+              {{ item.unitPrice }}$
             </span>
           </td>
         </tr>

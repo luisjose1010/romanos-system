@@ -10,6 +10,7 @@ use App\Models\Ingredient;
 class Order extends Model
 {
     protected $fillable = ['quantity'];
+    protected $appends = ['unitPrice', 'price'];
 
     public function product()
     {
@@ -24,5 +25,24 @@ class Order extends Model
     public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class);
+    }
+
+    public function getUnitPriceAttribute()
+    {
+        $price = 0;
+
+        $price += $this->product->price;
+        $price += $this->size->price;
+
+        foreach ($this->ingredients as $ingredient) {
+            $price += $ingredient->price;
+        }
+
+        return $price;
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->unitPrice * $this->quantity;
     }
 }
