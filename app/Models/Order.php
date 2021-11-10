@@ -31,11 +31,18 @@ class Order extends Model
     {
         $price = 0;
 
-        $price += $this->product->price;
-        $price += $this->size->price;
+        if (isset($this->product->price)) {
+            $price += $this->product->price;
+        }
 
-        foreach ($this->ingredients as $ingredient) {
-            $price += $ingredient->price;
+        if (isset($this->size->price)) {
+            $price += $this->size->price;
+        }
+
+        if (isset($this->ingredients)) {
+            foreach ($this->ingredients as $ingredient) {
+                $price += $ingredient->price;
+            }
         }
 
         return $price;
