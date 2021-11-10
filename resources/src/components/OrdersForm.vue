@@ -127,14 +127,13 @@ export default {
         .put(`/sales/${this.sale.id}`, { paid: true })
         .then((response) => {
           this.products = response.data;
-          this.$emit('reset');
         })
         .catch((error) => {
         // handle error
           console.log(error);
         })
         .then(() => {
-        // always executed
+          this.$emit('reset');
         });
     },
   },

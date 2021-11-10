@@ -35,30 +35,6 @@
             <span>{{ productSelected.description }}</span>
           </v-tooltip>
         </template>
-
-        <template
-          slot="item"
-          slot-scope="data"
-        >
-          <v-row class="m-0">
-            <v-col sm="10">
-              {{ data.item.id }} - {{ data.item.name }}
-            </v-col>
-            <v-col sm="2">
-              <v-tooltip right>
-                <template #activator="{ on, attrs }">
-                  <v-icon
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    mdi-information-outline
-                  </v-icon>
-                </template>
-                <span>{{ data.item.description }}</span>
-              </v-tooltip>
-            </v-col>
-          </v-row>
-        </template>
       </v-overflow-btn>
 
       <v-select
@@ -68,13 +44,23 @@
         :items="productSelected.ingredients"
         :item-text="item => `${item.name}`"
         :rules="checkIngredients"
-        spellcheck="false"
         label="Ingredientes"
         multiple
         chips
         persistent-hint
         return-object
-      />
+      >
+        <template #selection="{ item }">
+          <v-chip
+            color="red"
+            text-color="white"
+            close
+            @click:close="deleteIngredient(item)"
+          >
+            {{ item.name }}
+          </v-chip>
+        </template>
+      </v-select>
 
       <v-select
         v-if="productSelected.sizes && productSelected.sizes.length > 0"
@@ -84,7 +70,6 @@
         :item-text="item => `${item.name}`"
         :rules="noEmpty"
         label="Tamaño"
-        spellcheck="false"
         chips
         persistent-hint
         return-object
@@ -155,6 +140,7 @@ export default {
       productSelected: {},
       order: {
         quantity: 1,
+        ingredients: [],
       },
       orders: [],
       productEditable: true,
@@ -175,6 +161,9 @@ export default {
       });
   },
   methods: {
+    deleteIngredient(ingredient) {
+      this.order.ingredients = this.order.ingredients.filter((item) => item.id !== ingredient.id);
+    },
     resetOrder() {
       this.order = {
         quantity: 1,

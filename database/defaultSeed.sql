@@ -32,7 +32,7 @@ INSERT INTO `products` (`id`, `code`, `name`, `description`, `price`, `max_ingre
 (8, NULL, 'Combo económico', 'Pizza familiar, borde de queso, 1 ingrediente, salsa tártara, 12 tequeños, Pepsi de 1.5 litros.', 12, 1, 1, NULL, NULL),
 (9, NULL, 'Combo helado sencillo', 'Pizza familiar, borde de queso, 1 ingrediente, Pepsi de 1.5 litros, helado de 1 litro (o 1 torta).', 12, 1, 1, NULL, NULL),
 (10, NULL, 'Combo helado plus', 'Pizza familiar, borde de queso, 2 ingredientes, 12 tequeños, refresco de 1.5 litros, helado de 1 litro (o 1 torta).', 16, 2, 2, NULL, NULL),
-(11, NULL, 'Combo duo', '2 Pizzas familiares, 1 ingrediente (c/u), borde de queso (c/u), refresco de 1.5 litros.', 16, 2, 2, NULL, NULL),
+(11, NULL, 'Combo duo', '2 Pizzas familiares, 1 ingrediente (c/u), borde de queso (c/u), refresco de 1.5 litros.', 16, 2, 1, NULL, NULL),
 (12, NULL, 'Combo extrafamiliar', 'Pizza familiar, pizza individual, borde de queso (c/u), 1 ingrediente (c/u), salsa tártara, 12 tequeños, Pepsi de 1.5 litros.', 16, 2, 2, NULL, NULL),
 (13, NULL, 'Combo maracucho #1', 'Pizza familiar, borde de queso, 4 ingredientes, 12 tequeños, salsa tártara, Pepsi de 1.5 litros.', 16, 4, 4, NULL, NULL),
 (14, NULL, 'Pizza Nutella', NULL, 4, 1, 1, NULL, NULL),

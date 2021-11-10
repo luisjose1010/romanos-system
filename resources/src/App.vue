@@ -18,31 +18,81 @@
 
       <v-spacer />
 
-      <v-btn
-        to="/"
-        text
-      >
-        <span class="mr-2">Inicio</span>
-      </v-btn>
+      <div class="d-none d-md-block">
+        <v-btn
+          to="/"
+          text
+        >
+          <span class="mr-2">Inicio</span>
+        </v-btn>
 
-      <v-btn
-        to="/vender"
-        text
-      >
-        <span class="mr-2">Vender</span>
-      </v-btn>
+        <v-btn
+          to="/vender"
+          text
+        >
+          <span class="mr-2">Vender</span>
+        </v-btn>
 
-      <v-btn
-        to="/ventas"
-        text
-      >
-        <span class="mr-2">Ventas</span>
-      </v-btn>
+        <v-btn
+          to="/ventas"
+          text
+        >
+          <span class="mr-2">Ventas</span>
+        </v-btn>
+      </div>
+
+      <v-app-bar-nav-icon
+        class="d-md-none"
+        @click.stop="drawer = !drawer"
+      />
     </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      dark
+    >
+      <v-list dense>
+        <v-list-item>
+          <v-list-item-content>
+            <v-btn
+              to="/"
+              text
+            >
+              <span class="mr-2">Inicio</span>
+            </v-btn>
+
+            <v-btn
+              to="/vender"
+              text
+            >
+              <span class="mr-2">Vender</span>
+            </v-btn>
+
+            <v-btn
+              to="/ventas"
+              text
+            >
+              <span class="mr-2">Ventas</span>
+            </v-btn>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <router-view />
   </v-app>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      drawer: false,
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
