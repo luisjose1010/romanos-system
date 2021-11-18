@@ -19,7 +19,7 @@ class SaleController extends Controller
 
         if (!isset($parameters['id'])) {
             $sales = Sale::orderBy('created_at', 'DESC')
-                ->with(['orders', 'orders.product', 'orders.ingredients', 'orders.size'])
+                ->with(['orders', 'clients', 'orders.product', 'orders.ingredients', 'orders.size'])
                 ->get();
             $response->json($sales->toArray());
         } else {
@@ -29,15 +29,18 @@ class SaleController extends Controller
         }
     }
 
-    public function post()
+    public function postAll()
     {
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 
         try {
-            $sale = Sale::create($request);
+            $sale = new Sale();
+            $sale->ivaRate = $request['ivaRate'];
+            $sale->clientId = $request['client']['id'];
+            $sale->save();
 
-            $response->json($sale->toArray());
+            $response->json($sale::with('client', 'orders')->find($sale->id)->toArray());
         } catch (\Exception $e) {
             $response->json(["error" => $e->getMessage()]);
         } catch (\Error $e) {
