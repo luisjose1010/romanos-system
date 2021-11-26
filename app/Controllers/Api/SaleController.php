@@ -19,11 +19,11 @@ class SaleController extends Controller
 
         if (!isset($parameters['id'])) {
             $sales = Sale::orderBy('created_at', 'DESC')
-                ->with(['orders', 'clients', 'orders.product', 'orders.ingredients', 'orders.size'])
+                ->with(['orders', 'client', 'orders.product', 'orders.ingredients', 'orders.size'])
                 ->get();
             $response->json($sales->toArray());
         } else {
-            $sale = Sale::with(['orders', 'orders.product', 'orders.ingredients', 'orders.size'])
+            $sale = Sale::with(['orders', 'client', 'orders.product', 'orders.ingredients', 'orders.size'])
                 ->find($parameters['id']);
             $response->json($sale->toArray());
         }

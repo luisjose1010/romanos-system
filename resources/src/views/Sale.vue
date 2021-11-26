@@ -18,18 +18,37 @@
             <div class="text-caption mb-3">
               Fecha: {{ (new Date(sale.updatedAt)).toString() }}
             </div>
-            <v-list-item-title class="text-h5 mb-1 text-left">
-              Romano's Pizza
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-left">
-              Dirección: Av.13 #57A-70
-            </v-list-item-subtitle>
-            <v-list-item-subtitle class="text-left">
-              Teléfono: +58 426 4561542
-            </v-list-item-subtitle>
-            <v-list-item-subtitle class="text-left">
-              Email: luis06jose@gmail.com
-            </v-list-item-subtitle>
+            <v-row>
+              <v-col>
+                <v-list-item-title class="text-h5 mb-1 text-left">
+                  Romano's Pizza
+                </v-list-item-title>
+                <v-list-item-subtitle class="text-left">
+                  Dirección: Av.13 #57A-70
+                </v-list-item-subtitle>
+                <v-list-item-subtitle class="text-left">
+                  Teléfono: +58 426 4561542
+                </v-list-item-subtitle>
+                <v-list-item-subtitle class="text-left">
+                  Email: luis06jose@gmail.com
+                </v-list-item-subtitle>
+              </v-col>
+
+              <v-col>
+                <v-list-item-title class="text-h5 mb-1 text-right">
+                  Cliente: {{ sale.client.name }}
+                </v-list-item-title>
+                <v-list-item-subtitle class="text-right">
+                  Cédula: {{ sale.client.idCard }}
+                </v-list-item-subtitle>
+                <v-list-item-subtitle class="text-right">
+                  Teléfono: {{ sale.client.phoneNumber }}
+                </v-list-item-subtitle>
+                <v-list-item-subtitle class="text-right">
+                  Email: {{ sale.client.email }}
+                </v-list-item-subtitle>
+              </v-col>
+            </v-row>
 
             <v-simple-table
               class="mt-3"
@@ -137,7 +156,14 @@ export default {
   },
   data() {
     return {
-      sale: {},
+      sale: {
+        paid: true,
+        client: {
+          name: '',
+          idCard: '',
+          email: '',
+        },
+      },
     };
   },
   mounted() {

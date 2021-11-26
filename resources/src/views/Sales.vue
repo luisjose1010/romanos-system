@@ -24,7 +24,8 @@
               <v-list-item-content>
                 <v-list-item-title
                   class="text-left"
-                  v-text="`Venta No.${item.id} ${(!item.paid ? '(No confirmado)' : '')}`"
+                  v-text="`Venta No.${item.id}${(!item.paid ? ' (No confirmado)' : '')}:
+                   ${item.client.name}`"
                 />
                 Fecha: {{ getDate(item.createdAt) }}
               </v-list-item-content>

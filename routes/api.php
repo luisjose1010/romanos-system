@@ -31,6 +31,6 @@ Routes::api(new Route('/sales/{id:\d+}', 'Api\SaleController@put', 'PUT'));
 Routes::api(new Route('/clients', 'Api\ClientController@get', 'GET'));
 Routes::api(new Route('/clients/{id:\d+}', 'Api\ClientController@get', 'GET'));
 
-Routes::api(new Route('/clients', 'Api\SaleController@post', 'POST'));
+Routes::api(new Route('/clients', 'Api\ClientController@post', 'POST'));
 
-Routes::api(new Route('/clients/{id:\d+}', 'Api\SaleController@put', 'PUT'));
+Routes::api(new Route('/clients/{id:\d+}', 'Api\ClientController@put', 'PUT'));

@@ -17,12 +17,29 @@ class ClientController extends Controller
     {
         $response = new Response();
 
-        if (!isset($parameters['id'])) {
-            $clients = Client::all();
-            $response->json($clients->toArray());
-        } else {
-            $clients = Client::find($parameters['id']);
-            $response->json($clients->toArray());
+        try {
+            if (isset($parameters['id'])) {
+                $clients = Client::find($parameters['id']);
+                $response->json($clients->toArray());
+            } elseif (isset($_GET['idCard'])) {
+                // Devuelve el primer registro, ya que se busca por una clave única
+                $clients = Client::where('id_card', $_GET['idCard'])->get()->first();
+
+                if ($clients === null) {
+                    $response->json(
+                        ["error" => "No se ha encontrado el cliente con la cédula {$_GET['idCard']}"],
+                        404
+                    );
+                }
+                $response->json($clients->toArray());
+            } else {
+                $clients = Client::all();
+                $response->json($clients->toArray());
+            }
+        } catch (\Exception $e) {
+            $response->json(["error" => $e->getMessage()]);
+        } catch (\Error $e) {
+            $response->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -33,7 +50,7 @@ class ClientController extends Controller
 
         try {
             $client = Client::create($request);
-            $response->json($client::with('client', 'orders')->find($client->id)->toArray());
+            $response->json($client->toArray());
         } catch (\Exception $e) {
             $response->json(["error" => $e->getMessage()]);
         } catch (\Error $e) {
