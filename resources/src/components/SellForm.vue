@@ -152,7 +152,7 @@ export default {
       },
       clientSelected: false,
     };
-  },
+  }, // this.
   mounted() {
   },
   methods: {
@@ -178,7 +178,7 @@ export default {
         .then((response) => {
           // eslint-disable-next-line prefer-destructuring
           this.sale.client = response.data;
-          this.$emit('submit', this.sale);
+          this.$emit('submit', this.sale.client);
           this.clientSelected = true;
         })
         .catch((error) => {
