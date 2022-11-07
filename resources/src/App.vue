@@ -27,6 +27,13 @@
         </v-btn>
 
         <v-btn
+          to="/clientes"
+          text
+        >
+          <span class="mr-2">Clientes</span>
+        </v-btn>
+
+        <v-btn
           to="/vender"
           text
         >
