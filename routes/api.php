@@ -3,6 +3,10 @@
 use Framework\Routing\Route;
 use Framework\Routing\Routes;
 
+// Autenticación
+Routes::api(new Route('/token', 'Api\AuthController@index', 'GET'));
+Routes::api(new Route('/token', 'Api\AuthController@refreshToken', 'PUT'));
+
 // Productos
 Routes::api(new Route('/products', 'Api\ProductController@get', 'GET'));
 Routes::api(new Route('/products/all', 'Api\ProductController@getAll', 'GET'));

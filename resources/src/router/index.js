@@ -38,6 +38,14 @@ const routes = [
     name: 'Sale',
     component: () => import(/* webpackChunkName: "sale" */ '@/views/Sale.vue'),
   },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: () => {
+      localStorage.removeItem('user');
+      window.location = '/';
+    },
+  },
 ];
 
 const router = new VueRouter({

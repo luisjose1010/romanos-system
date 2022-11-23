@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use App\Models\Product;
 use Framework\Response;
 
@@ -25,6 +25,8 @@ class ProductController extends Controller
 
     public function getAll(array $parameters)
     {
+        $this->authToken();
+
         if (!isset($parameters['id'])) {
             $products = Product::with(['ingredients', 'sizes'])->get();
 
