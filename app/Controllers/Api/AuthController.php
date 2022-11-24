@@ -9,7 +9,10 @@ use App\Models\User;
 class AuthController extends Controller
 {
     private string $name = '';
-    private string $role = '';
+    private int $id = 0;
+    private string $idCard = '';
+    private string $email = '';
+    private array $role = [];
 
     public function index($parameters = null)
     {
@@ -22,14 +25,20 @@ class AuthController extends Controller
 
                 if ($this->login($username, $password)) {
                     $response->json([
+                        'id' => $this->id,
                         'username' => $username,
                         'name' => $this->name,
+                        'idCard' => $this->idCard,
+                        'email' => $this->email,
                         'role' => $this->role,
-                        'token' => $this->createToken(
-                            $username,
-                            $this->name,
-                            $this->role
-                        )
+                        'token' => $this->createToken([
+                            'id' => $this->id,
+                            'username' => $username,
+                            'name' => $this->name,
+                            'idCard' => $this->idCard,
+                            'email' => $this->email,
+                            'role' => $this->role
+                        ])
                     ]);
                 } else {
                     $response->json(['error' => 'Usuario o contraseña incorrectos'], 401);
@@ -79,8 +88,13 @@ class AuthController extends Controller
         if (isset($user)) {
             if ($user->username === $username && $user->password === hash('sha256', $password)) {
                 // Se guardan los datos relevantes para la autententicación y especialmente el token
+                $this->id = $user->id;
+                $this->username = $user->username;
                 $this->name = $user->name;
-                // $this->role = $user->role;
+                $this->idCard = $user->idCard;
+                $this->email = $user->email;
+                $this->role = ['id' => $user->role->id, 'name' => $user->role->name];
+
                 $authenticated = true;
             }
         }

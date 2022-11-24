@@ -7,6 +7,20 @@ use Framework\Routing\Routes;
 Routes::api(new Route('/token', 'Api\AuthController@index', 'GET'));
 Routes::api(new Route('/token', 'Api\AuthController@refreshToken', 'PUT'));
 
+// Usuarios
+Routes::api(new Route('/users', 'Api\UserController@get', 'GET'));
+Routes::api(new Route('/users/all', 'Api\UserController@getAll', 'GET'));
+Routes::api(new Route('/users/{id:\d+}', 'Api\UserController@get', 'GET'));
+Routes::api(new Route('/users/{id:\d+}/all', 'Api\UserController@getAll', 'GET'));
+
+Routes::api(new Route('/users/all', 'Api\UserController@postAll', 'POST'));
+
+Routes::api(new Route('/users/{id:\d+}', 'Api\UserController@put', 'PUT'));
+
+// Roles
+Routes::api(new Route('/roles', 'Api\RoleController@get', 'GET'));
+Routes::api(new Route('/roles/{id:\d+}', 'Api\RoleController@get', 'GET'));
+
 // Productos
 Routes::api(new Route('/products', 'Api\ProductController@get', 'GET'));
 Routes::api(new Route('/products/all', 'Api\ProductController@getAll', 'GET'));

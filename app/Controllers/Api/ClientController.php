@@ -67,7 +67,8 @@ class ClientController extends Controller
             $client = Client::find($parameters['id']);
             $client->fill($request);
 
-            $response->json($client::with('client', 'orders')->find($client->id)->toArray());
+            $client->save();
+            $response->json($client->toArray());
         } catch (\Exception $e) {
             $response->json(["error" => $e->getMessage()]);
         } catch (\Error $e) {

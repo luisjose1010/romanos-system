@@ -17,8 +17,13 @@ const routes = [
   },
   {
     path: '/clientes/:id',
-    name: 'Sale',
+    name: 'Client',
     component: () => import(/* webpackChunkName: "client" */ '@/views/Client.vue'),
+  },
+  {
+    path: '/buscar-cliente',
+    name: 'ClientSearch',
+    component: () => import(/* webpackChunkName: "clientSearch" */ '@/views/Client.vue'),
   },
   {
     path: '/vender',
@@ -37,6 +42,21 @@ const routes = [
     path: '/ventas/:id',
     name: 'Sale',
     component: () => import(/* webpackChunkName: "sale" */ '@/views/Sale.vue'),
+  },
+  {
+    path: '/usuarios',
+    name: 'Users',
+    component: () => import(/* webpackChunkName: "users" */ '@/views/Users.vue'),
+  },
+  {
+    path: '/usuarios/:id',
+    name: 'User',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
+  },
+  {
+    path: '/registrar-usuario',
+    name: 'User',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/RegisterUser.vue'),
   },
   {
     path: '/logout',

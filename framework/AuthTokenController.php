@@ -14,10 +14,11 @@ use Framework\Configuration\AppConfiguration;
 
 abstract class AuthTokenController extends Controller
 {
-    public function authToken()
+    public function authToken(array $roles = [])
     {
         $response = new Response();
         $result = null;
+        $authorized = false;
 
         try {
             if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -25,11 +26,20 @@ abstract class AuthTokenController extends Controller
                     $token = $matches[1];
 
                     $result = $this->checkToken($token);
+
+                    foreach ($roles as $key) {
+                        if ($result['role']['name'] === $key) {
+                        }
+                    }
                 } else {
                     throw new UnexpectedValueException;
                 }
             } else {
                 throw new UnexpectedValueException;
+            }
+
+            if (count($roles) > 0 && !$authorized) {
+                throw new Exception('Usuario no autorizado para acceder al recurso');
             }
         } catch (SignatureInvalidException $e) {
             $response->json(['error' => 'Firma incorrecta de token'], 401);
@@ -38,9 +48,9 @@ abstract class AuthTokenController extends Controller
         } catch (UnexpectedValueException $e) {
             $response->json(['error' => 'Token inválido'], 401);
         } catch (Exception $e) {
-            $response->json(['error' => 'Error al procesar token'], 401);
+            $response->json(['error' => $e->getMessage()], 401);
         } catch (Error $e) {
-            $response->json(['error' => 'Error al procesar token'], 401);
+            $response->json(['error' => 'Error al procesar token'], 500);
         }
 
         return $result;
@@ -53,7 +63,7 @@ abstract class AuthTokenController extends Controller
         return JWT::decode($token, new Key($secretKey, 'HS256'));
     }
 
-    protected function createToken($username, $name, $role): string
+    protected function createToken(array $user): string
     {
         $secretKey = $_ENV['API_SECRET_KEY'];
         $issuedAt = new DateTimeImmutable();
@@ -65,9 +75,12 @@ abstract class AuthTokenController extends Controller
             'iss'  => $serverName,
             'nbf'  => $issuedAt->getTimestamp(),
             'exp'  => $expire,
-            'username' => $username,
-            'name' => $name,
-            'role' => $role
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'name' => $user['name'],
+            'idCard' => $user['idCard'],
+            'email' => $user['email'],
+            'role' => $user['role']
         ];
 
         return JWT::encode($payload, $secretKey, 'HS256');

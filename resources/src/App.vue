@@ -10,7 +10,10 @@
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     >
       <v-list>
-        <v-list-item link>
+        <v-list-item
+          :to="`/usuarios/${user.id}`"
+          link
+        >
           <v-avatar
             size="30"
             color="red darken-4"
@@ -24,9 +27,18 @@
           </v-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h6">
-              Name Lastname
+              {{ user.name }}
             </v-list-item-title>
-            <v-list-item-subtitle>email@mail.com</v-list-item-subtitle>
+            <v-list-item-subtitle>Usuario: {{ user.username }}</v-list-item-subtitle>
+            <v-list-item-subtitle v-if="user.idCard">
+              Cédula: {{ user.idCard }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="user.role">
+              ({{ user.role.name }})
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="user.email">
+              {{ user.email }}
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -39,10 +51,28 @@
       >
         <v-list-item
           link
+          to="/usuarios"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-account-edit-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Administrar usuarios</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          link
+          to="/registrar-usuario"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-account-plus-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Registrar usuario</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          link
           to="/logout"
         >
           <v-list-item-icon>
-            <v-icon>mdi-close-circle-outline</v-icon>
+            <v-icon>mdi-logout</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Cerrar sesión</v-list-item-title>
         </v-list-item>
@@ -156,6 +186,17 @@ export default {
   },
   data() {
     return {
+      user: {
+        id: '',
+        username: '',
+        name: '',
+        idCard: '',
+        email: '',
+        role: {
+          id: null,
+          name: '',
+        },
+      },
       drawer: false,
       logged: false,
     };
@@ -165,8 +206,8 @@ export default {
   },
   methods: {
     login() {
-      console.log(localStorage.getItem('user'));
       if (localStorage.getItem('user')) {
+        this.user = JSON.parse(localStorage.getItem('user'));
         this.logged = true;
       }
     },

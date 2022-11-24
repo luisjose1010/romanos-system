@@ -1,24 +1,15 @@
 <template>
   <v-main>
     <v-container>
-      <h2>
-        Clients
-        <router-link to="/buscar-cliente">
-          <v-icon>
-            mdi-magnify
-          </v-icon>
-        </router-link>
-      </h2>
+      <h2>Usuarios</h2>
 
-      <v-card
-        class="mx-auto mt-3"
-      >
+      <v-card class="mx-auto mt-3">
         <v-list>
           <v-list-item-group>
             <v-list-item
-              v-for="(item, index) in clients"
+              v-for="(item, index) in users"
               :key="index"
-              :to="`clientes/${item.id}`"
+              :to="`/usuarios/${item.id}`"
             >
               <v-list-item-icon>
                 <v-icon>
@@ -28,7 +19,7 @@
               <v-list-item-content>
                 <v-list-item-title
                   class="text-left"
-                  v-text="`${item.name} (${formatIdCard(item.idCard)})`"
+                  v-text="`${item.name} (${formatIdCard(item.idCard)}) - (${item.role.name})`"
                 />
               </v-list-item-content>
             </v-list-item>
@@ -44,23 +35,17 @@ import api from '../api';
 import utilities from '../utilities';
 
 export default {
-  name: 'Clients',
-  components: {
-
-  },
+  name: 'Users',
   data() {
     return {
-      clients: [],
-      icons: {
-        cart: 'mdi-account-outline',
-      },
+      users: [],
     };
   },
   mounted() {
     api
-      .get('/clients')
+      .get('/users/all')
       .then((response) => {
-        this.clients = response.data;
+        this.users = response.data;
       })
       .catch((error) => {
         // handle error
@@ -79,6 +64,5 @@ export default {
       return utilities.formatIdCard(idCard);
     },
   },
-
 };
 </script>
