@@ -20,6 +20,7 @@
     <v-form v-model="valid">
       <v-card-text>
         <v-text-field
+          v-model="username"
           type="text"
           label="Usuario"
           placeholder="Usuario"
@@ -57,7 +58,7 @@
               <v-card-actions class="justify-end">
                 <v-btn
                   text
-                  @click="$emit('submit')"
+                  @click="recoveryPassword"
                 >
                   Enviar
                 </v-btn>
@@ -71,6 +72,8 @@
 </template>
 
 <script>
+import api from '@/api';
+
 export default {
   data: () => ({
     // Validaciones
@@ -81,6 +84,15 @@ export default {
   }),
 
   methods: {
+    recoveryPassword() {
+      api
+        .post('/password', {
+          username: this.username,
+        })
+        .then(() => {
+          this.$emit('submit');
+        });
+    },
   },
 };
 </script>

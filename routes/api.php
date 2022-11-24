@@ -21,6 +21,9 @@ Routes::api(new Route('/users/{id:\d+}', 'Api\UserController@put', 'PUT'));
 Routes::api(new Route('/roles', 'Api\RoleController@get', 'GET'));
 Routes::api(new Route('/roles/{id:\d+}', 'Api\RoleController@get', 'GET'));
 
+// Contraseña, reestablecer y relacionado
+Routes::api(new Route('/password', 'Api\PasswordController@post', 'POST'));
+
 // Productos
 Routes::api(new Route('/products', 'Api\ProductController@get', 'GET'));
 Routes::api(new Route('/products/all', 'Api\ProductController@getAll', 'GET'));
