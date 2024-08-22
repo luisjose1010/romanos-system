@@ -137,6 +137,7 @@
             text
             color="primary accent-4"
             :disabled="!sale.paid"
+            @click="print()"
           >
             Imprimir
           </v-btn>
@@ -183,6 +184,9 @@ export default {
   methods: {
     parseNewLineToHtml(str) {
       return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    },
+    print() {
+      window.print();
     },
   },
 

@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use App\Models\User;
 use Dotenv\Exception\ValidationException;
 use Exception;
@@ -17,6 +17,7 @@ class UserController extends Controller
 
     public function get($parameters)
     {
+        $this->authToken(['Administrador', 'Gerente']);
         $response = new Response();
 
         try {
@@ -47,6 +48,7 @@ class UserController extends Controller
 
     public function getAll($parameters)
     {
+        $this->authToken(['Administrador', 'Gerente']);
         $response = new Response();
 
         try {
@@ -77,6 +79,7 @@ class UserController extends Controller
 
     public function postAll()
     {
+        $this->authToken(['Administrador']);
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 
@@ -106,11 +109,17 @@ class UserController extends Controller
 
     public function put($parameters)
     {
+        $userLogged = $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 
         try {
             $user = User::find($parameters['id']);
+
+            // Si no es el mismo usuario, no tiene permiso, a no ser que sea Administrador o Gerente
+            if (!$user->id === $userLogged->id) {
+                $this->authToken(['Administrador', 'Gerente']);
+            }
 
             if (isset($request['username']))
                 $user->username = $request['username'];
@@ -124,8 +133,18 @@ class UserController extends Controller
             if (isset($request['idCard']))
                 $user->idCard = $request['idCard'];
 
-            if (isset($request['role']) && $request['role']['id'])
+            if (isset($request['password'])){
+                // Solo si es administrador puede cambiar la contraseña de otro
+                $this->authToken(['Administrador']);
+                $user->password = hash('sha256', $request['password']);
+            }
+
+            if (isset($request['role']) && $request['role']['id']) {
+                // Solo si es administrador puede cambiar el rol
+                $this->authToken(['Administrador']);
                 $user->roleId = $request['role']['id'];
+            }
+
 
             $user->save();
 
@@ -139,6 +158,7 @@ class UserController extends Controller
 
     public function delete($parameters)
     {
+        $this->authToken();
         $response = new Response();
 
         try {

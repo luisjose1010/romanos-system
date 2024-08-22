@@ -189,7 +189,7 @@ COMMIT;
 -- Clave de usuario admin predeterminado: 1234
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `id_card`, `updated_at`, `created_at`, `role_id`) VALUES
-('1', 'admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Administrador', NULL, '0000000000', '2022-11-23 13:42:37.000000', '2022-11-23 13:42:37.000000', '1');
+('1', 'admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Administrador', '', '0000000000', '2022-11-23 13:42:37.000000', '2022-11-23 13:42:37.000000', '1');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

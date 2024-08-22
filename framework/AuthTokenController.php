@@ -27,8 +27,10 @@ abstract class AuthTokenController extends Controller
 
                     $result = $this->checkToken($token);
 
+                    // Verifica y autentica que el usuario este en los roles que se pasaron por parámetros
                     foreach ($roles as $key) {
-                        if ($result['role']['name'] === $key) {
+                        if ($result->role->name === $key) {
+                            $authorized = true;
                         }
                     }
                 } else {
@@ -50,7 +52,7 @@ abstract class AuthTokenController extends Controller
         } catch (Exception $e) {
             $response->json(['error' => $e->getMessage()], 401);
         } catch (Error $e) {
-            $response->json(['error' => 'Error al procesar token'], 500);
+            $response->json(['error' => "Error al procesar token: {$e->getMessage()}"], 500);
         }
 
         return $result;

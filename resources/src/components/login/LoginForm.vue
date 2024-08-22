@@ -14,7 +14,8 @@
         </v-icon>
       </v-avatar>
       <h2 class="red--text">
-        Login Romanosystem
+        Iniciar sesión <br>
+        Romano's System
       </h2>
     </div>
     <v-form>
@@ -47,6 +48,17 @@
         ¿Ha olvidado su contraseña?
       </a>
     </v-form>
+
+    <v-alert
+      v-model="showAlert"
+      outlined
+      dismissible
+      transition="scale-transition"
+      :type="alertType"
+      class="mt-3"
+    >
+      {{ alertText }}
+    </v-alert>
   </v-card>
 </template>
 
@@ -57,6 +69,9 @@ import api from '@/api';
 export default {
   name: 'LoginForm',
   data: () => ({
+    showAlert: false,
+    alertText: '',
+    alertType: 'success',
     formData: {
       username: null,
       password: null,
@@ -82,6 +97,21 @@ export default {
           this.user = response.data;
           localStorage.setItem('user', JSON.stringify(this.user));
           this.$emit('login', this.user);
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 401:
+              this.alertText = 'Usuario o contraseña incorrectos';
+              this.alertType = 'error';
+              this.showAlert = true;
+              break;
+
+            default:
+              this.alertText = error.response.data.error;
+              this.alertType = 'error';
+              this.showAlert = true;
+              break;
+          }
         });
     },
   },

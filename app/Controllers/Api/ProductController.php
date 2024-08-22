@@ -15,6 +15,8 @@ class ProductController extends Controller
 
     public function get(array $parameters)
     {
+        $this->authToken();
+
         if (!isset($parameters['id'])) {
             $products = Product::all();
 
@@ -37,6 +39,8 @@ class ProductController extends Controller
 
     public function getIngredients(array $parameters)
     {
+        $this->authToken();
+
         if (!isset($parameters['id'])) {
             $products = Product::with(['ingredients'])->get();
 
@@ -47,6 +51,8 @@ class ProductController extends Controller
 
     public function getSizes(array $parameters)
     {
+        $this->authToken();
+
         if (!isset($parameters['id'])) {
             $products = Product::with(['sizes'])->get();
 
@@ -58,6 +64,8 @@ class ProductController extends Controller
 
     public function post(array $parameters)
     {
+        $this->authToken();
+
         $request = json_decode(file_get_contents('php://input'), true);
 
         $product = Product::create($request);

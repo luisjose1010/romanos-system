@@ -54,6 +54,7 @@
       <v-row>
         <v-col>
           <v-text-field
+            v-if="user.role === 'Administrador'"
             v-model="password"
             label="Contraseña"
             name="password"
@@ -63,6 +64,7 @@
         </v-col>
         <v-col>
           <v-select
+            v-if="user.role === 'Administrador'"
             v-model="user.role"
             :items="roles"
             item-text="name"

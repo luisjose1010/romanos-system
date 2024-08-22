@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use App\Models\Client;
 use Framework\Response;
 
@@ -15,6 +15,7 @@ class ClientController extends Controller
 
     public function get($parameters)
     {
+        $this->authToken();
         $response = new Response();
 
         try {
@@ -45,6 +46,7 @@ class ClientController extends Controller
 
     public function post()
     {
+        $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 
@@ -60,6 +62,7 @@ class ClientController extends Controller
 
     public function put($parameters)
     {
+        $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 

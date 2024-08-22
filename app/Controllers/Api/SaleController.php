@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use App\Models\Sale;
 use Framework\Response;
 
@@ -15,6 +15,7 @@ class SaleController extends Controller
 
     public function getAll($parameters)
     {
+        $this->authToken();
         $response = new Response();
 
         if (!isset($parameters['id'])) {
@@ -31,6 +32,7 @@ class SaleController extends Controller
 
     public function postAll()
     {
+        $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 
@@ -50,7 +52,7 @@ class SaleController extends Controller
 
     public function put($parameters)
     {
-
+        $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
         $response = new Response();
 

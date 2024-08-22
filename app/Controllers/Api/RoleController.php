@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use App\Models\Role;
 use Framework\Response;
 
@@ -15,6 +15,7 @@ class RoleController extends Controller
 
     public function get($parameters)
     {
+        $this->authToken();
         $response = new Response();
 
         try {

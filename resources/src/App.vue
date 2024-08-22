@@ -8,6 +8,7 @@
       right
       dark
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      class="d-print-none"
     >
       <v-list>
         <v-list-item
@@ -50,6 +51,7 @@
         dense
       >
         <v-list-item
+          v-if="user.role.name === 'Administrador' || user.role.name === 'Gerente'"
           link
           to="/usuarios"
         >
@@ -59,6 +61,7 @@
           <v-list-item-title>Administrar usuarios</v-list-item-title>
         </v-list-item>
         <v-list-item
+          v-if="user.role.name === 'Administrador'"
           link
           to="/registrar-usuario"
         >
@@ -66,6 +69,16 @@
             <v-icon>mdi-account-plus-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Registrar usuario</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          v-if="user.role.name === 'Administrador' || user.role.name === 'Gerente'"
+          link
+          to="/copia-de-seguridad"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-backup-restore</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Copia de seguridad</v-list-item-title>
         </v-list-item>
         <v-list-item
           link
@@ -84,13 +97,14 @@
       app
       color="primary"
       dark
+      class="d-print-none"
     >
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="@/assets/romanos-logo.jpg"
+          src="@/assets/romanos-logo.png"
           transition="scale-transition"
           width="150"
         />
@@ -139,6 +153,7 @@
       v-model="drawer"
       app
       dark
+      class="d-print-none"
     >
       <v-list dense>
         <v-list-item>

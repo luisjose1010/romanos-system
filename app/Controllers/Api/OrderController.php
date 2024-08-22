@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Api;
 
-use Framework\Controller;
+use Framework\AuthTokenController as Controller;
 use Framework\Response;
 use App\Models\Order;
 use App\Models\Product;
@@ -17,10 +17,11 @@ class OrderController extends Controller
 
     public function getAll()
     {
+        $this->authToken();
+        $response = new Response();
+
         try {
             $sales = Order::with(['product', 'size', 'ingredients'])->get();
-
-            $response = new Response();
             $response->json($sales->toArray());
         } catch (\Exception $e) {
             $response->json(["error" => $e->getMessage()]);
@@ -31,6 +32,7 @@ class OrderController extends Controller
 
     public function postAll()
     {
+        $this->authToken();
         $request = json_decode(file_get_contents('php://input'), true);
 
         $order = new Order();
@@ -103,8 +105,7 @@ class OrderController extends Controller
     }
 
     private function checkSize($size, $product)
-    {
-        // Verifica que el tamaño pertenezca al producto
+    {        // Verifica que el tamaño pertenezca al producto
         if (!Product::find($product['id'])->sizes->contains($size['id'])) {
             throw new \Exception("El tamaño no pertenece al producto indicado.");
         }

@@ -55,8 +55,13 @@ const routes = [
   },
   {
     path: '/registrar-usuario',
-    name: 'User',
+    name: 'register-user',
     component: () => import(/* webpackChunkName: "user" */ '@/views/RegisterUser.vue'),
+  },
+  {
+    path: '/copia-de-seguridad',
+    name: 'Backup',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/Backup.vue'),
   },
   {
     path: '/logout',

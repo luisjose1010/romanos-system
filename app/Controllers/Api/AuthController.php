@@ -9,6 +9,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     private string $name = '';
+    private string $username = '';
     private int $id = 0;
     private string $idCard = '';
     private string $email = '';
@@ -41,7 +42,7 @@ class AuthController extends Controller
                         ])
                     ]);
                 } else {
-                    $response->json(['error' => 'Usuario o contraseña incorrectos'], 401);
+                    $response->json(['error' => 'Usuario o contraseña incorrectos', 'errorName' => 'user_error'], 401);
                 }
             } else if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
                 $this->refreshToken();

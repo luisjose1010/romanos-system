@@ -17,7 +17,10 @@
         Recuperar contraseña
       </h2>
     </div>
-    <v-form v-model="valid">
+    <v-form
+      v-model="valid"
+      @keydown.enter.prevent=""
+    >
       <v-card-text>
         <v-text-field
           v-model="username"
@@ -28,13 +31,19 @@
         />
       </v-card-text>
       <v-card-actions class="justify-center">
+        <v-btn
+          color="red"
+          @click="$emit('submit')"
+        >
+          <span class="white--text px-8">Atras</span>
+        </v-btn>
         <v-dialog
           transition="dialog-bottom-transition"
           max-width="600"
         >
           <template #activator="{ on, attrs }">
             <v-btn
-              color="red"
+              color="green"
               :disabled="!valid"
               v-bind="attrs"
               v-on="on"
