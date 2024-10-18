@@ -245,13 +245,29 @@ public_html
 !index.php
 !.htaccess
 
-.env
-info.txt
+*.bak
+*.*.bak
 
+.DS_Store
 node_modules
 /dist
 
+# env files
+.env
 .env.local
 .env.*.local
 
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

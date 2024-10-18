@@ -10,6 +10,6 @@ class HomeController extends Controller
     public function index($parameters = null)
     {
         $response = new Response();
-        $response->view('Home');
+        $response->view('home');
     }
 }

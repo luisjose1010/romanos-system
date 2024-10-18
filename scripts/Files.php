@@ -13,15 +13,12 @@ class Files
 
         // Elimina archivos innecesarios para el funcionamiento de la aplicacion en producción
         unlink(__DIR__ . '/../README.md');
-        unlink(__DIR__ . '/../vue.config.js');
+        unlink(__DIR__ . '/../vite.config.js');
         unlink(__DIR__ . '/../package.json');
         unlink(__DIR__ . '/../package-lock.json');
         unlink(__DIR__ . '/../.eslintrc.js');
         unlink(__DIR__ . '/../.gitignore');
-        unlink(__DIR__ . '/../info.txt');
         unlink(__DIR__ . '/../.env.example');
-        unlink(__DIR__ . '/../.env.local');
-        unlink(__DIR__ . '/../.env.local.example');
         unlink(__DIR__ . '/../.editorconfig');
     }
 

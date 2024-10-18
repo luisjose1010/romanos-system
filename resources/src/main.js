@@ -1,13 +1,20 @@
-import Vue from 'vue';
-import App from './App.vue';
-import './registerServiceWorker';
-import vuetify from '@/plugins/vuetify';
-import router from './router';
+/**
+ * main.js
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
 
-Vue.config.productionTip = false;
+// Plugins
+import { registerPlugins } from '@/plugins'
 
-new Vue({
-  router,
-  vuetify,
-  render: (h) => h(App),
-}).$mount('#app');
+// Components
+import App from './App.vue'
+
+// Composables
+import { createApp } from 'vue'
+
+const app = createApp(App)
+
+registerPlugins(app)
+
+app.mount('#app')

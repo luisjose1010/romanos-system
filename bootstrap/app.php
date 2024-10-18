@@ -6,4 +6,6 @@ require __DIR__ . '/enviroment.php';
 
 require __DIR__ . '/database.php';
 
+require __DIR__ . '/cors.php';
+
 require __DIR__ . '/routes.php';

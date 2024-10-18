@@ -1,15 +1,15 @@
 # Romano's System
 
-## Table of Contents
+## Tabla de contenido
 
-1. [Descripción](#Descripción)
-2. [Guías de estilos](#Guía-de-estilos)
-3. [Tecnologías](#Tecnologías)
-4. [Scripts](#Scripts)
+1. [Descripción](#descripción)
+2. [Guías de estilos](#guía-de-estilos)
+3. [Tecnologías](#tecnologías)
+4. [Scripts](#scripts)
 
 ## Descripción
 
-Sistema de ventas de Romano's Pizza
+Sistema de ventas para Romano's Pizza
 
 ## Guía de estilos
 
@@ -19,7 +19,7 @@ Se utiliza "phpcs" para la documentación y el seguimiento de la guía de estilo
 
 ### Código JavaScript
 
-Se utiliza "ESlint" para la documentación y el seguimiento de la guía de estilo indicada al desarrollar código en lenguaje JavaScript. Se sigue la convencion de JavaScript basada en la especificación de [Airbnb](https://github.com/airbnb/javascript "Airbnb"). Al utilizar el framework Vue.js, se sigue la especificación oficial encontrada en su [página](https://vuejs.org/v2/style-guide/ "Vue.js"). En el archivo `.eslintrc.json` se encuentra el conjunto de reglas y configuraciones necesarias que extienden de el estándar de Airbnb y demás (incluido Vue.js), con la modificación que permite utilizar tanto el final de linea de windows, como el basado en unix.
+Se utiliza "ESlint" para la documentación y el seguimiento de la guía de estilo indicada al desarrollar código en lenguaje JavaScript. Al utilizar el framework Vue.js, se sigue la especificación oficial encontrada en su [página](https://vuejs.org/style-guide/ "Vue.js"). En el archivo `.eslintrc.json` se encuentra el conjunto de reglas y configuraciones necesarias.
 
 ### Commits de GIT
 
@@ -105,19 +105,20 @@ them.
 
 - VueJS
 - Vuetify
+- Vite
 - Composer
 
 El proyecto está desarrollado sobre el framework [Simple Framework](https://github.com/Goblins-Studios/simple-framework "Simple Framework").
 
-El proyecto utiliza [NodeJS](https://nodejs.org/es/ "NodeJS") y [Composer](https://getcomposer.org/ "Composer") para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
+El proyecto utiliza [NodeJS](https://nodejs.org/ "NodeJS"), en conjunto con la herramienta [Vite](https://vite.dev/ "Vite") y [Composer](https://getcomposer.org/ "Composer") para gestionar las tecnologías y dependencias de las bibliotecas utilizadas.
 
-Realiza la instalacion de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las intrucciones en la documentación oficial.
+Realiza la instalación de las dependencia del proyecto y compilar los archivos mediante NodeJS, los cuales se pueden encontrar las instrucciones en la documentación oficial.
 
 La carpeta donde se encuentra la mayoría de los archivos necesarios para desarrollar sobre NodeJS es "resources/src".
 
 ## Configuración inicial del proyecto
 
-Para comenzar a utilizar el proyecto, puede ejecutar los comandos indicados en los siguientes apartados.  
+Para comenzar a utilizar el proyecto, puede ejecutar los comandos indicados en los siguientes apartados. El usuario por defecto al realizar el "Seeding" de la base de datos es 'admin' con la contraseña predeterminada '1234'.  
 
 ### Instalar dependencias de **Composer**
 
@@ -141,13 +142,13 @@ npm run dev
 
 ### Configuración inicial de NodeJS
 
-Para configurar NodeJS se necesita un archivo `.env.local` en la raiz del proyecto con las variables de entorno necesarias, incluyendo el "Host" y la "URL" de la API. El archivo `.env.local.example` se puede encontrar como un ejemplo de archivo `.env.local`.
+Para configurar NodeJS se utiliza el archivo `.env` en la raíz del proyecto mediante las variables de entorno necesarias que configuran a Vite, incluyendo el "Host" y la "URL" de la API. El archivo `.env.example` se puede encontrar como un ejemplo de archivo `.env`. Aunque es el mismo archivo que utiliza el código PHP, las variables de la App para Vite, deben llevar el prefijo "VITE_", por lo que se evita enviar al código del cliente las variables de entorno internas del servidor utilizadas para la API.
 
 ### Configuración inicial de la base de datos y el código PHP
 
 La base de datos a utilizar debe ser configurada en el archivo `.env` del proyecto, así como otras características configurables desde ese archivo. El archivo `.env.example` se puede encontrar como un ejemplo de archivo `.env`.
 
-Una vez realizada la configuración para la conexión con la base de datos, en caso de que sea nueva o no tenga la estructura necesaria para la aplicación, se pueden ejecutar scripts para crear el esquema (o "Schema") necesario de la base de datos, así como poblarlos con registros, mediante lo que se suele llamar "Seed". En la carpeta database se encuentran los archivos que contiene este esquema y estas semillas, con una finalidad similar a la que se pueden encontrar en marcos de trabajo más desarollados con el uso de "migrations". Debido a esto, se puede encontrar la fecha de creación comentada al principio de los archivos indicados.
+Una vez realizada la configuración para la conexión con la base de datos, en caso de que sea nueva o no tenga la estructura necesaria para la aplicación, se pueden ejecutar scripts para crear el esquema (o "Schema") necesario de la base de datos, así como poblarlos con registros, mediante lo que se suele llamar "Seed". En la carpeta database se encuentran los archivos que contiene este esquema y estas semillas, con una finalidad similar a la que se pueden encontrar en marcos de trabajo más desarrollados con el uso de "migrations". Debido a esto, se puede encontrar la fecha de creación comentada al principio de los archivos indicados.
 
 Los scripts necesarios están en los siguientes apartados, asi como en la correspondiente lista de scripts.
 
