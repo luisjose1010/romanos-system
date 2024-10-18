@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 
-const API_URL = process.env.VUE_APP_API_HOST + process.env.VUE_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_HOST + import.meta.env.VITE_API_URL;
 
 const api = axios.create();
 
@@ -22,7 +22,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 401 && !error.response.data.errorName === 'user_error') {
+    if (error.response.status === 401 && error.response.data.errorName === 'token_expired') {
       window.location.href = '/logout';
     }
     return Promise.reject(error);

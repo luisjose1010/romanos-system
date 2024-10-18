@@ -4,30 +4,28 @@
       ref="form"
       v-model="valid"
     >
-      <v-overflow-btn
+      <v-autocomplete
         v-model="productSelected"
-        :name="`product_${Math.random()}`"
+        name="id"
+        type="object"
         :items="products"
-        :item-text="item => `${item.id} - ${item.name}`"
+        :item-title="item => item.id ? `${item.id} - ${item.name}` : ''"
         :rules="noEmptyObject"
-        :readonly="!productEditable"
         label="Producto"
         spellcheck="false"
         editable
         persistent-hint
         return-object
         segmented
-        @change="productEditable = false"
       >
         <template
           v-if="productSelected && productSelected.description"
-          slot="append-outer"
+          v-slot:append
         >
           <v-tooltip top>
-            <template #activator="{ on, attrs }">
+            <template v-slot:activator="{ props }">
               <v-icon
-                v-bind="attrs"
-                v-on="on"
+                v-bind="props"
               >
                 mdi-information-outline
               </v-icon>
@@ -35,14 +33,14 @@
             <span>{{ productSelected.description }}</span>
           </v-tooltip>
         </template>
-      </v-overflow-btn>
+      </v-autocomplete>
 
       <v-select
         v-if="productSelected.ingredients && productSelected.ingredients.length > 0"
         v-model="order.ingredients"
         name="ingredients"
         :items="productSelected.ingredients"
-        :item-text="item => `${item.name}`"
+        :item-title="item => `${item.name}`"
         :rules="checkIngredients"
         label="Ingredientes"
         multiple
@@ -67,7 +65,7 @@
         v-model="order.size"
         name="size"
         :items="productSelected.sizes"
-        :item-text="item => `${item.name}`"
+        :item-title="item => `${item.name}`"
         :rules="noEmpty"
         label="Tamaño"
         chips
@@ -137,13 +135,12 @@ export default {
       ],
 
       products: [],
-      productSelected: {},
+      actualProduct: {},
       order: {
         quantity: 1,
         ingredients: [],
       },
       orders: [],
-      productEditable: true,
     };
   },
   mounted() {
@@ -169,7 +166,6 @@ export default {
         quantity: 1,
       };
       this.productSelected = {};
-      this.productEditable = true;
     },
     addOrder() {
       if (this.order.ingredients && !Array.isArray(this.order.ingredients)) {
@@ -192,6 +188,25 @@ export default {
         });
     },
   },
+  computed: {
+    /*
+     * Se tiene que utilizar esta propiedad para gestionar las demás propiedades
+     * del producto seleccionado
+    */
+    productSelected: {
+      // getter
+      get() {
+        return this.actualProduct
+      },
+      // setter
+      set(newValue) {
+        this.actualProduct = newValue;
+        this.order = {
+          quantity: 1,
+        }; // Reset order sin el producto actual, por eso no se puede con 'resetOrder()'
+      }
+    }
+  }
 };
 </script>
 

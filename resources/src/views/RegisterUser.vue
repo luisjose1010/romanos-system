@@ -69,7 +69,7 @@
               v-model="user.role"
               :items="roles"
               :rules="[(v) => Object.keys(v).length !== 0 || 'Campo requerido']"
-              item-text="name"
+              :item-title="item => item.name ? item.name : ''"
               filled
               label="Rol"
               return-object

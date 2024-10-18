@@ -21,7 +21,7 @@
         :disabled="!!sale.id || !clientSelected"
         @click="createSale"
       >
-        Nueva venta
+        Iniciar venta
       </v-btn>
     </v-form>
   </div>

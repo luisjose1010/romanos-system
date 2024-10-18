@@ -7,55 +7,35 @@
     "name": "luisjose1010"
   },
   "scripts": {
-    "serve": "vue-cli-service serve --port 3000",
-    "build": "vue-cli-service build --no-clean",
-    "dev": "vue-cli-service build --no-clean --mode development",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix --ignore-path .gitignore"
   },
-  "main": "index.js",
   "dependencies": {
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "register-service-worker": "^1.7.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuetify": "^2.4.0"
+    "@mdi/font": "7.4.47",
+    "axios": "^1.7.4",
+    "core-js": "^3.37.1",
+    "roboto-fontface": "*",
+    "vue": "^3.4.31",
+    "vuetify": "^3.6.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@mdi/font": "^5.4.55",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-pwa": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-vue": "^7.18.0",
-    "sass": "~1.32.0",
-    "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.2",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "_id": "romanos-system@1.0.0",
-  "bugs": {
-    "url": "https://github.com/luisjose1010/romanos-system/issues"
-  },
-  "homepage": "https://github.com/luisjose1010/romanos-system#readme",
-  "keywords": [],
-  "license": "EULA",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/luisjose1010/romanos-system.git"
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.4.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "sass": "1.77.6",
+    "unplugin-fonts": "^1.1.1",
+    "unplugin-vue-components": "^0.27.2",
+    "unplugin-vue-router": "^0.10.0",
+    "vite": "^5.3.3",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue-router": "^4.4.0"
   }
 }

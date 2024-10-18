@@ -1,130 +1,74 @@
 <template>
   <div>
-    <v-form
-      v-model="valid"
-    >
+    <v-form v-model="valid">
       <v-row>
-        <v-col>
-          <v-row>
-            <v-col sm="7">
-              <v-text-field
-                v-model="client.idCard"
-                label="Cédula"
-                name="idCard"
-                :rules="rules.noEmpty"
-
-                required
-              />
-            </v-col>
-
-            <v-col sm="5">
-              <v-dialog
-                v-model="showErrorDialog"
-                width="500"
-              >
-                <template #activator="{ attrs }">
-                  <v-btn
-                    color="primary"
-                    :disabled="clientSelected"
-                    v-bind="attrs"
-                    @click="searchClient"
-                  >
-                    Buscar
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title>
-                    Error
-                  </v-card-title>
-
-                  <v-card-text>
-                    {{ errorDialogText }}
-                  </v-card-text>
-
-                  <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                      color="primary"
-                      text
-                      @click="showErrorDialog = false"
-                    >
-                      Aceptar
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-col>
-          </v-row>
+        <v-col cols="12" sm="10" md="8">
+          <v-text-field v-model="client.idCard" label="Cédula" name="idCard" :rules="rules.noEmpty" required />
         </v-col>
-        <v-col>
-          <v-text-field
-            v-model="client.phoneNumber"
-            label="Teléfono"
-            name="phoneNumber"
-          />
+
+        <v-col cols="12" sm="2">
+          <v-dialog v-model="showErrorDialog" width="500">
+            <template #activator="{ attrs }">
+              <v-btn color="primary" :disabled="clientSelected" v-bind="attrs" @click="searchClient">
+                Buscar
+              </v-btn>
+            </template>
+
+            <v-card>
+              <v-card-title>
+                Error
+              </v-card-title>
+
+              <v-card-text>
+                {{ errorDialogText }}
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="primary" text @click="showErrorDialog = false">
+                  Aceptar
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="client.name"
-            label="Nombre"
-            name="name"
-            :rules="rules.noEmpty"
 
-            required
-          />
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field v-model="client.name" label="Nombre" name="name" :rules="rules.noEmpty" required />
         </v-col>
-        <v-col>
-          <v-text-field
-            v-model="client.email"
-            label="Email"
-            name="email"
-          />
+        <v-col cols="12" md="6">
+          <v-text-field v-model="client.phoneNumber" label="Teléfono" name="phoneNumber" />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-btn
-            color="green"
-            :disabled="clientSelected || !valid"
-            @click="createClient"
-          >
+          <v-text-field v-model="client.email" label="Email" name="email" />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <v-btn color="green" :disabled="clientSelected || !valid" @click="createClient">
             Nuevo cliente
           </v-btn>
         </v-col>
         <v-col>
-          <v-btn
-            color="blue"
-            :disabled="!clientSelected || !valid"
-            @click="updateClient"
-          >
+          <v-btn color="blue" :disabled="!clientSelected || !valid" @click="updateClient">
             Actualizar cliente
           </v-btn>
         </v-col>
         <v-col>
-          <v-btn
-            color="primary"
-            :disabled="!clientSelected"
-            @click="reset()"
-          >
+          <v-btn color="primary" :disabled="!clientSelected" @click="reset()">
             Reestablecer
           </v-btn>
         </v-col>
       </v-row>
     </v-form>
 
-    <v-alert
-      v-model="showAlert"
-      shaped
-      outlined
-      dismissible
-      transition="scale-transition"
-      type="success"
-      class="mt-3"
-    >
+    <v-alert v-model="showAlert" shaped outlined dismissible transition="scale-transition" type="success" class="mt-3">
       {{ alertText }}
     </v-alert>
   </div>
@@ -170,11 +114,11 @@ export default {
           this.clientSelected = true;
         })
         .catch((error) => {
-        // handle error
+          // handle error
           console.log(error);
         })
         .then(() => {
-        // always executed
+          // always executed
         });
     }
   },
@@ -189,7 +133,7 @@ export default {
           this.$emit('createClient', this.client);
         })
         .catch((error) => {
-        // handle error
+          // handle error
           console.log(error);
           this.errorDialogText = 'Cliente no encontrado';
           this.showErrorDialog = true;
@@ -208,7 +152,7 @@ export default {
           this.$emit('searchClient', this.client);
         })
         .catch((error) => {
-        // handle error
+          // handle error
           console.log(error);
           this.errorDialogText = 'Ha ocurrido un error inesperado';
           this.showErrorDialog = true;
@@ -224,7 +168,7 @@ export default {
           this.$emit('searchClient', this.client);
         })
         .catch((error) => {
-        // handle error
+          // handle error
           console.log(error);
           this.errorDialogText = 'Cliente no encontrado';
           this.showErrorDialog = true;

@@ -67,7 +67,7 @@
             v-if="user.role === 'Administrador'"
             v-model="user.role"
             :items="roles"
-            item-text="name"
+            item-title="name"
             filled
             label="Rol"
             return-object

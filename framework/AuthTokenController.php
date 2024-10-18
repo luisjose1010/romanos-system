@@ -44,15 +44,15 @@ abstract class AuthTokenController extends Controller
                 throw new Exception('Usuario no autorizado para acceder al recurso');
             }
         } catch (SignatureInvalidException $e) {
-            $response->json(['error' => 'Firma incorrecta de token'], 401);
+            $response->json(['error' => 'Firma incorrecta de token', 'errorName' => 'token_signature'], 401);
         } catch (ExpiredException $e) {
-            $response->json(['error' => 'Token expirado'], 401);
+            $response->json(['error' => 'Token expirado', 'errorName' => 'token_expired'], 401);
         } catch (UnexpectedValueException $e) {
-            $response->json(['error' => 'Token inválido'], 401);
+            $response->json(['error' => 'Token inválido', 'errorName' => 'token_invalid'], 401);
         } catch (Exception $e) {
             $response->json(['error' => $e->getMessage()], 401);
         } catch (Error $e) {
-            $response->json(['error' => "Error al procesar token: {$e->getMessage()}"], 500);
+            $response->json(['error' => "Error al procesar token: {$e->getMessage()}", 'errorName' => 'token_unprocessable'], 500);
         }
 
         return $result;

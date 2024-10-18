@@ -3,36 +3,30 @@
     <v-container>
       <h2>
         Clients
-        <router-link to="/buscar-cliente">
+        <v-btn to="/buscar-cliente" class="mx-2" icon>
           <v-icon>
             mdi-magnify
           </v-icon>
-        </router-link>
+        </v-btn>
       </h2>
 
       <v-card
         class="mx-auto mt-3"
       >
         <v-list>
-          <v-list-item-group>
             <v-list-item
               v-for="(item, index) in clients"
               :key="index"
               :to="`clientes/${item.id}`"
+              class="text-left"
             >
-              <v-list-item-icon>
+              <template v-slot:prepend>
                 <v-icon>
                   mdi-account-outline
                 </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  class="text-left"
-                  v-text="`${item.name} (${formatIdCard(item.idCard)})`"
-                />
-              </v-list-item-content>
+              </template>
+              {{ `${item.name} (${formatIdCard(item.idCard)})` }}
             </v-list-item>
-          </v-list-item-group>
         </v-list>
       </v-card>
     </v-container>

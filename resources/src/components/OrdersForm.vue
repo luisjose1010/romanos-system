@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Total</h2>
-    <v-simple-table>
+    <v-table>
       <thead>
         <tr>
           <th class="text-left">
@@ -58,7 +58,7 @@
           </td>
         </tr>
       </tbody>
-    </v-simple-table>
+    </v-table>
 
     <v-row class="mt-2">
       <v-col md="2">

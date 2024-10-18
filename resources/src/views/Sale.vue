@@ -50,7 +50,7 @@
               </v-col>
             </v-row>
 
-            <v-simple-table
+            <v-table
               class="mt-3"
             >
               <template #default>
@@ -124,7 +124,7 @@
                   </tr>
                 </tbody>
               </template>
-            </v-simple-table>
+            </v-table>
 
             <span class="mt-3 text-left">Total: {{ sale.totalPrice }}$</span>
           </v-list-item-content>

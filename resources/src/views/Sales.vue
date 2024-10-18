@@ -7,30 +7,26 @@
         class="mx-auto mt-3"
       >
         <v-list>
-          <v-list-item-group>
             <v-list-item
               v-for="(item, index) in sales"
               :key="index"
               :to="`ventas/${item.id}`"
+              :subtitle="`Fecha: ${getDate(item.createdAt)}`"
+              class="text-left"
             >
-              <v-list-item-icon>
+              <template v-slot:prepend>
                 <v-icon v-if="item.paid">
                   mdi-cart
                 </v-icon>
                 <v-icon v-else>
                   mdi-cart-off
                 </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  class="text-left"
-                  v-text="`Venta No.${item.id}${(!item.paid ? ' (No confirmado)' : '')}:
-                   ${item.client.name}`"
-                />
-                Fecha: {{ getDate(item.createdAt) }}
-              </v-list-item-content>
+              </template>
+              <template v-slot:title>
+                {{ `Venta No.${item.id}${(!item.paid ? ' (No confirmado)' : '')}:
+                   ${item.client.name}` }}
+              </template>
             </v-list-item>
-          </v-list-item-group>
         </v-list>
       </v-card>
     </v-container>

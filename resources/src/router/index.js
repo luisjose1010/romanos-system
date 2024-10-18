@@ -1,82 +1,37 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '@/views/Home.vue';
 
-Vue.use(VueRouter);
+/**
+ * router/index.ts
+ *
+ * Automatic routes for `./src/pages/*.vue`
+ */
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/clientes',
-    name: 'Clients',
-    component: () => import(/* webpackChunkName: "clients" */ '@/views/Clients.vue'),
-  },
-  {
-    path: '/clientes/:id',
-    name: 'Client',
-    component: () => import(/* webpackChunkName: "client" */ '@/views/Client.vue'),
-  },
-  {
-    path: '/buscar-cliente',
-    name: 'ClientSearch',
-    component: () => import(/* webpackChunkName: "clientSearch" */ '@/views/Client.vue'),
-  },
-  {
-    path: '/vender',
-    name: 'Sell',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "sell" */ '@/views/Sell.vue'),
-  },
-  {
-    path: '/ventas',
-    name: 'Sales',
-    component: () => import(/* webpackChunkName: "sales" */ '@/views/Sales.vue'),
-  },
-  {
-    path: '/ventas/:id',
-    name: 'Sale',
-    component: () => import(/* webpackChunkName: "sale" */ '@/views/Sale.vue'),
-  },
-  {
-    path: '/usuarios',
-    name: 'Users',
-    component: () => import(/* webpackChunkName: "users" */ '@/views/Users.vue'),
-  },
-  {
-    path: '/usuarios/:id',
-    name: 'User',
-    component: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
-  },
-  {
-    path: '/registrar-usuario',
-    name: 'register-user',
-    component: () => import(/* webpackChunkName: "user" */ '@/views/RegisterUser.vue'),
-  },
-  {
-    path: '/copia-de-seguridad',
-    name: 'Backup',
-    component: () => import(/* webpackChunkName: "user" */ '@/views/Backup.vue'),
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: () => {
-      localStorage.removeItem('user');
-      window.location = '/';
-    },
-  },
-];
+// Composables
+import { createRouter, createWebHistory } from 'vue-router/auto'
+import routes from './routes'
+// import { routes }  from 'vue-router/auto-routes'
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-});
+})
 
-export default router;
+// Workaround for https://github.com/vitejs/vite/issues/11804
+router.onError((err, to) => {
+  if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
+    if (!localStorage.getItem('vuetify:dynamic-reload')) {
+      console.log('Reloading page to fix dynamic import error')
+      localStorage.setItem('vuetify:dynamic-reload', 'true')
+      location.assign(to.fullPath)
+    } else {
+      console.error('Dynamic import error, reloading page did not fix it', err)
+    }
+  } else {
+    console.error(err)
+  }
+})
+
+router.isReady().then(() => {
+  localStorage.removeItem('vuetify:dynamic-reload')
+})
+
+export default router

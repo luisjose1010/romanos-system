@@ -107,7 +107,7 @@ export default {
               break;
 
             default:
-              this.alertText = error.response.data.error;
+              this.alertText = 'Ha ocurrido un error inesperado';
               this.alertType = 'error';
               this.showAlert = true;
               break;
