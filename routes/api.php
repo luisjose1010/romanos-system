@@ -53,7 +53,9 @@ Routes::api(new Route('/sales/{id:\d+}', 'Api\SaleController@put', 'PUT'));
 
 // Clientes
 Routes::api(new Route('/clients', 'Api\ClientController@get', 'GET'));
+Routes::api(new Route('/clients/all', 'Api\ClientController@getAll', 'GET'));
 Routes::api(new Route('/clients/{id:\d+}', 'Api\ClientController@get', 'GET'));
+Routes::api(new Route('/clients/{id:\d+}/all', 'Api\ClientController@getAll', 'GET'));
 
 Routes::api(new Route('/clients', 'Api\ClientController@post', 'POST'));
 

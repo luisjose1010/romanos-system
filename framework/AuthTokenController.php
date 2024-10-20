@@ -69,7 +69,7 @@ abstract class AuthTokenController extends Controller
     {
         $secretKey = $_ENV['API_SECRET_KEY'];
         $issuedAt = new DateTimeImmutable();
-        $expire = $issuedAt->modify("+{$_ENV['API_TOKEN_EXPIRES']} milliseconds")->getTimestamp();
+        $expire = $issuedAt->modify("+{$_ENV['API_TOKEN_EXPIRE_MINUTES']} minutes")->getTimestamp();
         $serverName = $_ENV['APP_SERVER'];
 
         $payload = [

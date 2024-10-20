@@ -44,6 +44,39 @@ class ClientController extends Controller
         }
     }
 
+    public function getAll($parameters)
+    {
+        $response = new Response();
+
+        try {
+            if (isset($parameters['id'])) {
+                $clients = Client::with(['sales'])->find($parameters['id']);
+                $response->json($clients->toArray());
+            } elseif (isset($_GET['idCard'])) {
+                // Devuelve el primer registro, ya que se busca por una clave única
+                $clients = Client::where('id_card', $_GET['idCard'])
+                    ->with(['sales'])
+                    ->first();
+
+                if ($clients === null) {
+                    $response->json(
+                        ["error" => "No se ha encontrado el cliente con la cédula {$_GET['idCard']}"],
+                        404
+                    );
+                }
+                $response->json($clients->toArray());
+            } else {
+                $clients = Client::with(['sales'])->get();
+                $response->json($clients->toArray());
+            }
+        } catch (\Exception $e) {
+            $response->json(["error" => $e->getMessage()]);
+        } catch (\Error $e) {
+            $response->json(['error' => $e->getMessage()]);
+        }
+    }
+
+
     public function post()
     {
         $this->authToken();

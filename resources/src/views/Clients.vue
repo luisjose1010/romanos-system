@@ -17,7 +17,7 @@
             <v-list-item
               v-for="(item, index) in clients"
               :key="index"
-              :to="`clientes/${item.id}`"
+              :to="`/clientes/${item.id}`"
               class="text-left"
             >
               <template v-slot:prepend>

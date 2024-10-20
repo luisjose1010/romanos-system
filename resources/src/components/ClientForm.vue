@@ -61,7 +61,7 @@
           </v-btn>
         </v-col>
         <v-col>
-          <v-btn color="primary" :disabled="!clientSelected" @click="reset()">
+          <v-btn v-if="!resetDisabled" color="primary" :disabled="!clientSelected" @click="reset()">
             Reestablecer
           </v-btn>
         </v-col>
@@ -85,7 +85,10 @@ import api from '@/api';
  */
 export default {
   props: {
-
+    resetDisabled: {
+      type: Boolean,
+      required: false,
+    }
   },
   data: () => ({
     rules: {
@@ -112,6 +115,7 @@ export default {
         .then((response) => {
           this.client = response.data;
           this.clientSelected = true;
+          this.$emit('searchClient', this.client);
         })
         .catch((error) => {
           // handle error
@@ -135,7 +139,7 @@ export default {
         .catch((error) => {
           // handle error
           console.log(error);
-          this.errorDialogText = 'Cliente no encontrado';
+          this.errorDialogText = 'Error al registrar cliente: ' + error?.message;
           this.showErrorDialog = true;
         });
     },
