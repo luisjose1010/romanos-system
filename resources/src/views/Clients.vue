@@ -2,10 +2,10 @@
   <v-main>
     <v-container>
       <h2>
-        Clients
-        <v-btn to="/buscar-cliente" class="mx-2" icon>
+        Clientes
+        <v-btn to="/clientes/editar" class="mx-2" icon>
           <v-icon>
-            mdi-magnify
+            mdi-pencil
           </v-icon>
         </v-btn>
       </h2>

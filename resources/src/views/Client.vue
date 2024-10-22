@@ -2,7 +2,7 @@
   <v-main>
     <v-container>
       <h3 class="d-flex justify-start">
-        Cliente: {{client?.name}}
+        Cliente: {{ client?.name }}
       </h3>
       <v-expansion-panels v-model="panel" class="mt-2">
         <v-expansion-panel>
@@ -12,7 +12,7 @@
             </h3>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <ClientForm resetDisabled @searchClient="selectClient($event?.id)"
+            <ClientForm :resetDisabled="disableReset" @searchClient="selectClient($event?.id)"
               @createClient="selectClient($event?.id)" class="my-3" />
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       panel: 1, // Abre el segundo panel por defecto
+      disableReset: false, // Permite resetear los campos del formulario por defecto
       error: false,
       errorText: 'Ha ocurrido un error',
       client: {
@@ -69,6 +70,7 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       this.selectClient(this.$route.params.id);
+      this.disableReset = true; // Evita cambiar de cliente al haber uno ya seleccionado desde la ruta
     }
   },
   methods: {

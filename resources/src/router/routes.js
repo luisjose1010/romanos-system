@@ -17,7 +17,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "client" */ '@/views/Client.vue'),
   },
   {
-    path: '/buscar-cliente',
+    path: '/clientes/editar',
     name: 'ClientSearch',
     component: () => import(/* webpackChunkName: "clientSearch" */ '@/views/Client.vue'),
   },

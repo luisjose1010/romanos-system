@@ -85,6 +85,7 @@ import api from '@/api';
  */
 export default {
   props: {
+    // Desactiva el botón para reestablecer el formulario
     resetDisabled: {
       type: Boolean,
       required: false,
